@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lab 2 Report</title>
+<style>
+  @page { size: letter; margin: 0.55in 0.6in; }
+  :root { --ink: #0b0b0b; --ink2: #52514e; --rule: #c3c2b7; --wash: #f3f2ee; }
+  html { background: #fff; }
+  body { font-family: "Times New Roman", Times, serif; font-size: 10pt; line-height: 1.28; color: var(--ink);
+         max-width: 7.3in; margin: 0 auto; padding: 0.2in 0; background: #fff; }
+  h1 { font-size: 14pt; margin: 0 0 2pt; text-align: center; }
+  .byline { text-align: center; font-size: 9.5pt; color: var(--ink2); margin-bottom: 8pt; }
+  h2 { font-size: 11pt; margin: 9pt 0 3pt; border-bottom: 0.75pt solid var(--rule); padding-bottom: 1pt; }
+  p { margin: 0 0 4pt; text-align: justify; }
+  ul { margin: 0 0 4pt; padding-left: 16pt; }
+  li { margin-bottom: 1.5pt; }
+  code { font-family: Consolas, "Courier New", monospace; font-size: 8.8pt; }
+  figure { margin: 6pt 0; break-inside: avoid; text-align: center; }
+  figure img { width: 6.6in; }
+  figcaption { font-size: 8.8pt; color: var(--ink2); text-align: left; margin-top: 2pt; }
+  table { border-collapse: collapse; width: 100%; font-size: 8.6pt; margin: 4pt 0 2pt; break-inside: avoid; }
+  th, td { border-bottom: 0.5pt solid var(--rule); padding: 1.5pt 4pt; text-align: right; }
+  th { border-bottom: 1pt solid var(--ink); font-weight: bold; }
+  td:first-child, th:first-child { text-align: left; }
+  tr.grp td { border-top: 0.75pt solid var(--ink2); }
+  table.td2 td:nth-child(2), table.td2 th:nth-child(2) { text-align: left; }
+  .hi { font-weight: bold; }
+  .cap { font-size: 8.8pt; color: var(--ink2); margin-bottom: 4pt; }
+  /* Draft markers: delete every .todo before printing */
+  .todo { background: #fff2b3; outline: 1px dashed #c9a400; }
+</style>
+</head>
+<body>
+
+<h1>ECE5755 / CS5754 Lab 2: Tiling/Blocking, Quantization and Attention</h1>
+<div class="byline">Pablo Penalba (pp555) &middot; Fall 2026</div>
+
+<h2>1. Implementation</h2>
+<ul>
+<li><b><code>matmul_blocking()</code></b> tiles all three loops: the outer loops step over <code>BLOCK_SIZE_I × BLOCK_SIZE_K</code> tiles of <code>A</code> and <code>BLOCK_SIZE_K × BLOCK_SIZE_J</code> tiles of <code>B</code>, accumulating into a <code>BLOCK_SIZE_I × BLOCK_SIZE_J</code> tile of a zero-initialised <code>C</code>; edge tiles are clipped, so any shape works. Inside a tile the loop order is i-k-j: <code>A[i][k]</code> is loaded once into a register and the innermost loop updates a row of <code>C</code> from a row of <code>B</code> with unit stride. The final tile size is 32 × 256 × 32 (Section 3).</li>
+<li><b><code>matmul_quant()</code></b> unpacks <code>32 / QUANT_PRECISION</code> elements per word with a shift and mask, most-significant first (the handout's <code>0x01020304</code> = [1, 2, 3, 4]); element <i>e</i> of <code>A[i][k]</code> multiplies row <code>4k + e</code> of <code>B</code>. The dot product is accumulated in a 64-bit integer and cast to <code>float</code>.</li>
+<li><b><code>scaled_dot_product_attention()</code></b> computes, per query row, the scores <code>Q[i]·K[j] / √depth</code>, a numerically stable softmax (max subtracted) and the weighted sum of the rows of <code>V</code>. The Lab 1 <code>softmax()</code> returns <i>log</i>-probabilities, so attention computes plain probabilities itself.</li>
+<li><b><code>convolution_im2col()</code></b> (in the template, with a provided test) flattens the kernels over all channels, builds the im2col matrix, multiplies with <code>matmul</code> or <code>matmul_blocking</code>, reshapes with <code>col2im</code>, then adds the bias and applies ReLU.</li>
+</ul>
+<p><b>Testing.</b> All 33 unit tests pass (<code>make all_tests</code>). Every hand-checked <code>matmul</code> case is also run through <code>matmul_blocking</code>, and blocking is compared with the naive result on shapes chosen to stress the edge-tile logic (smaller than one tile, exact multiples, and one past a tile boundary in every dimension), using small integer values so the different summation order cannot cause rounding differences. The provided quantization test uses <code>0x01010101</code>, which cannot detect a reversed byte order, so I added the handout's example with distinct bytes, plus an incompatible-shape case. Every convolution test runs the direct, im2col-naive and im2col-blocking paths.</p>
+
+<h2>2. Profiling methodology</h2>
+<p><b>Harness.</b> <code>perf/profile.c</code> (from Lab 1, extended) builds two random N × N matrices once with a fixed seed, then calls <code>matmul</code> or <code>matmul_blocking</code> <code>iters</code> times, freeing each result, and reports the wall-clock time per call (<code>clock_gettime</code>). Iteration counts (20 000, 20, 1 for N = 64, 512, 1536) keep every run at 4.6–16 s, so the function under test dominates; an <code>iters = 0</code> run of each configuration measures setup alone. Its profile is nothing like the kernels' (at N = 64: 29 % Frontend Bound and 15 % Bad Speculation, against ≤ 0.8 % and ≤ 2.4 % for every kernel run), so without the repetition loop it would distort the results. Setup is short, however: the whole <code>iters = 0</code> program takes 0.11 s at N = 1536 (<code>time</code>, real), i.e. ≤ 1.8 % of any run, and less at smaller N. The sizes bracket the cache hierarchy of the profiling node (48 KB L1d, 2 MB L2 per core, 30 MB L3 per socket): the three 64 × 64 matrices total 48 KB, the 512 case 3 MB (beyond L2), and the 1536 case 27 MB (about the L3 size). Tile sizes are compile-time macros, so <code>perf/sweep_tiles.sh</code> builds one binary per configuration with <code>-DBLOCK_SIZE_I/J/K</code>.</p>
+<p><b>Measurement.</b> Every run is a separate SLURM job on the Sapphire Rapids <code>ece5755</code> node (Xeon Silver 4514Y; SMT disabled). The program is pinned to the core SLURM assigned to the job, and <code>toplev.py -l1|-l2 -v --no-desc --force-cpu spr --core S&lt;s&gt;-C&lt;c&gt;</code> counts only that core (<code>perf/on_core.sh</code>, <code>perf/run_toplev.sh</code>). The runtime sweep ran each of 5 variants × 3 sizes twice; Top-down data was collected for naive and three tile configurations at levels 1 and 2, twice each, and averaged by <code>perf/summarize.py</code>. Every level-1 and level-2 run reported MUX = 100 % (no counter multiplexing), the standard deviation of Backend Bound across trials is at most 1.1 percentage points, and runtimes under toplev match the uninstrumented sweep within 1.5 %. Runtimes are the <code>real</code>/wall-clock time of the timed loop; the two trials agree within 1.5 % in 13 of 15 cases (2.7 % and 5.4 % for 32 × 32 × 32 and 32 × 256 × 32 at N = 64).</p>
+
+<h2>3. Results</h2>
+<table>
+<tr><th>Implementation (tile I × J × K)</th><th>N = 64</th><th>speedup</th><th>ns/MAC</th><th>N = 512</th><th>speedup</th><th>ns/MAC</th><th>N = 1536</th><th>speedup</th><th>ns/MAC</th></tr>
+<tr class="grp"><td>naive <code>matmul</code> (Lab 1)</td><td>796 µs</td><td>1.00</td><td>3.04</td><td>420.3 ms</td><td>1.00</td><td>3.13</td><td>12.32 s</td><td>1.00</td><td>3.40</td></tr>
+<tr><td>169 × 32 × 9 (template default)</td><td>507 µs</td><td>1.57</td><td>1.93</td><td>256.2 ms</td><td>1.64</td><td>1.91</td><td>6.96 s</td><td>1.77</td><td>1.92</td></tr>
+<tr><td>32 × 32 × 32</td><td>496 µs</td><td>1.61</td><td>1.89</td><td>251.0 ms</td><td>1.67</td><td>1.87</td><td>6.84 s</td><td>1.80</td><td>1.89</td></tr>
+<tr><td>64 × 64 × 64</td><td class="hi">459 µs</td><td class="hi">1.74</td><td class="hi">1.75</td><td>237.5 ms</td><td>1.77</td><td>1.77</td><td>6.44 s</td><td>1.91</td><td>1.78</td></tr>
+<tr><td><b>32 × 256 × 32 (submitted)</b></td><td>479 µs</td><td>1.66</td><td>1.83</td><td class="hi">229.4 ms</td><td class="hi">1.83</td><td class="hi">1.71</td><td class="hi">6.18 s</td><td class="hi">1.99</td><td class="hi">1.71</td></tr>
+</table>
+<div class="cap"><b>Table 1.</b> Wall-clock time per call (mean of 2 trials), speedup over the Lab 1 <code>matmul</code>, and time per multiply-accumulate. Working set (A + B + C): 48 KB, 3 MB and 27 MB. All builds use the provided Makefile flags (<code>-O0</code>).</div>
+
+<figure><img src="../lab2/results/topdown_l1.svg" alt="Top-down level 1 breakdown of naive matmul and three blocking tile sizes at N = 64, 512 and 1536">
+<figcaption><b>Figure 1.</b> Top-down level 1 (% of pipeline slots, mean of 2 trials), grouped by input size; the Lab 1 <code>matmul</code> is the baseline in each group.</figcaption></figure>
+
+<table class="td2">
+<tr><th>N</th><th>Implementation</th><th>Retiring</th><th>light ops</th><th>Backend</th><th>BE: Core</th><th>BE: Memory</th><th>Bad spec.</th><th>Frontend</th><th>retired µops per MAC (rel.)</th></tr>
+<tr class="grp"><td>64</td><td>naive</td><td>64.6</td><td>62.2</td><td>34.6</td><td class="hi">34.6</td><td>0.0</td><td>0.4</td><td>0.4</td><td class="hi">1.25</td></tr>
+<tr><td></td><td>169 × 32 × 9</td><td>83.7</td><td>80.2</td><td>13.3</td><td>12.8</td><td>0.6</td><td>2.2</td><td>0.8</td><td>1.02</td></tr>
+<tr><td></td><td>64 × 64 × 64</td><td class="hi">89.8</td><td>85.9</td><td>9.4</td><td>8.8</td><td>0.6</td><td>0.4</td><td>0.4</td><td>1.00</td></tr>
+<tr><td></td><td>32 × 256 × 32</td><td>87.1</td><td>83.5</td><td>12.0</td><td>10.0</td><td>2.0</td><td>0.6</td><td>0.4</td><td>1.00</td></tr>
+<tr class="grp"><td>512</td><td>naive</td><td>61.6</td><td>59.6</td><td>37.3</td><td class="hi">37.3</td><td>0.0</td><td>0.8</td><td>0.4</td><td class="hi">1.25</td></tr>
+<tr><td></td><td>169 × 32 × 9</td><td>83.9</td><td>80.3</td><td>13.4</td><td>13.0</td><td>0.4</td><td>2.0</td><td>0.8</td><td>1.04</td></tr>
+<tr><td></td><td>64 × 64 × 64</td><td>88.9</td><td>85.0</td><td>10.4</td><td>10.0</td><td>0.4</td><td>0.4</td><td>0.4</td><td>1.01</td></tr>
+<tr><td></td><td>32 × 256 × 32</td><td class="hi">91.0</td><td>87.1</td><td>5.9</td><td>5.5</td><td>0.4</td><td>2.4</td><td>0.7</td><td>1.00</td></tr>
+<tr class="grp"><td>1536</td><td>naive</td><td>56.6</td><td>54.7</td><td>42.6</td><td class="hi">41.4</td><td>1.2</td><td>0.4</td><td>0.4</td><td class="hi">1.25</td></tr>
+<tr><td></td><td>169 × 32 × 9</td><td>82.8</td><td>79.2</td><td>14.6</td><td>14.2</td><td>0.4</td><td>2.0</td><td>0.8</td><td>1.04</td></tr>
+<tr><td></td><td>64 × 64 × 64</td><td>88.0</td><td>84.1</td><td>11.2</td><td>10.8</td><td>0.4</td><td>0.4</td><td>0.4</td><td>1.01</td></tr>
+<tr><td></td><td>32 × 256 × 32</td><td class="hi">89.8</td><td>85.9</td><td>7.1</td><td>6.7</td><td>0.4</td><td>2.4</td><td>0.7</td><td>1.00</td></tr>
+</table>
+<div class="cap"><b>Table 2.</b> Top-down level 2 (% of slots, mean of 2 trials). The last column is time per MAC × Retiring fraction, which is proportional to the number of µops retired per MAC (at equal clock frequency), normalised to 32 × 256 × 32.</div>
+
+<h2>4. Analysis</h2>
+<p><b>Where the speedup comes from.</b> Time per MAC is proportional to (µops per MAC) ÷ (fraction of slots that retire), so the speedup splits into two factors. (1) <i>Fewer µops:</i> naive <code>matmul</code> retires 1.25× more µops per MAC than any blocked variant, at every size (Table 2). At <code>-O0</code> its inner loop reloads the row pointer <code>B[k]</code>, and loads and stores <code>sum</code> and <code>k</code> through the stack on every iteration; the blocked inner loop has <code>a</code>, <code>B_row</code> and <code>C_row</code> hoisted out of it. (2) <i>Fewer stalled slots:</i> naive is 35–43 % Backend Bound, almost all Core Bound, because every iteration adds into the same <code>sum</code>: each multiply-add must wait for the previous add <i>and</i> for <code>sum</code> to be stored and reloaded, so iterations cannot overlap (Lab 1 found the same chain). In the i-k-j tile loop consecutive iterations update different <code>C[i][j]</code> and are independent, so the out-of-order core overlaps them and Core Bound falls to 5.5–14 %, with Retiring up to 89–91 %. At N = 1536 the two factors multiply to the measured speedup of 32 × 256 × 32: 1.25 × (89.8 / 56.6 = 1.59) = 1.98×.</p>
+<p><b>Blocking wins even when everything fits in L1.</b> At N = 64 the whole working set (48 KB) fits in L1d, so tiling has no capacity misses to remove, yet every blocked variant is 1.57–1.74× faster. The whole gain at this size comes from the two factors above, i.e. from the loop structure that tiling forces, not from cache reuse.</p>
+<p><b>Growing inputs: naive slows down, blocking does not, but not because of Memory Bound.</b> The naive cost per MAC rises from 3.04 to 3.40 ns (+12 %) from 48 KB to 27 MB, while 32 × 256 × 32 stays at 1.71 ns from N = 512 to 1536, so the speedup grows (1.66× → 1.83× → 1.99×). The naive inner loop walks <code>B</code> down a column, touching a new cache line on every access. At N = 512 the lines of one column (512 × 64 B = 32 KB) fit in L1d and are reused by the next 15 columns; at N = 1536 they need 96 KB, so every access misses L1 and is served from L2, and all 9 MB of <code>B</code> is re-streamed from L3 once per row of <code>A</code> (≈1.2 GB/s). The blocked version instead keeps a 32 × 256 tile of <code>B</code> (32 KB) in L1d while all 32 rows of the <code>A</code> tile reuse it. Yet Top-down shows Memory Bound ≤ 1.2 % for every naive run: the extra time appears as Core Bound (34.6 → 37.3 → 41.4 %). Because each load's address does not depend on the <code>sum</code> chain, the prefetchers and out-of-order execution can issue the column loads early, and their L2 latency is mostly hidden behind the much longer accumulator chain; what remains shows up as the chain waiting rather than as cycles with loads outstanding. Level 3 agrees. It needs more events than the core has counters, so toplev multiplexes them (MUX = 8 % for the full tree and 19 % with only the Backend subtree), and absolute values are unreliable; but two independent runs give consistent level-3 values (pairs below). Naive's Core Bound is Ports_Utilization: 19.9/19.2 % of clocks at N = 64 and 20.9/19.2 % at N = 1536, with Divider ≈0, i.e. cycles in which few execution ports are busy because µops wait on the dependency chain; blocking cuts it to 4.9/3.5 %. Memory stalls appear only for naive at N = 1536 (L2 Bound 1.2/1.2 %, L3 Bound 3.0/3.3 %, both 0 at N = 64), matching the column walk re-streaming <code>B</code> from L3; the blocked version shows none beyond 1.5/1.5 % L1 Bound. That is the cache benefit of tiling, but at <code>-O0</code> it is second-order.</p>
+<p><b>Tile shape.</b> The template default 169 × 32 × 9 is the slowest blocked variant at every size. With K = 9 and J = 32, each tile performs only 9 × 32 multiply-adds per row of <code>A</code> before the loop nest moves on, so loop control (which at <code>-O0</code> loads and stores every counter through memory) is a larger share of the work: it retires 2–4 % more µops per MAC than 32 × 256 × 32 (Table 2) and has the highest Core Bound of the blocked variants (12.8–14.2 %), since the partial sums in <code>C</code> are re-read and re-written N/9 instead of N/32 times. 64 × 64 × 64 (three 16 KB tiles, exactly the 48 KB L1d) is best at N = 64; 32 × 256 × 32 is best for the larger inputs, where its 256-wide inner loop runs longest without loop-control interruptions (Core Bound 5.5–6.7 %, Retiring 90–91 %). At N = 64 its J tile is clipped to 64, which removes that advantage. Bad Speculation stays ≤ 2.4 % for every variant.</p>
+<p><b><code>matmul_blocking</code> vs. <code>matmul</code>.</b> The submitted 32 × 256 × 32 version is 1.66–1.99× faster than the Lab 1 <code>matmul</code>, and the bottleneck moves from Core Bound on the <code>sum</code> dependency chain (35–43 % of slots) to almost pure Retiring (≈90 %): the pipeline is now busy nearly every cycle, so the remaining cost is the number of µops itself. Most of them are <code>-O0</code> overhead: 86 % of slots are light operations, and at level 3 memory operations (loads and stores of loop counters, pointers and the <code>B</code>/<code>C</code> elements) are the largest share of them, while floating-point arithmetic is only ≈10 % of retired µops. So the next step is <code>-O2</code> and vectorisation (AVX-512 would do 16 multiply-adds per instruction). Only then would the kernel run fast enough for the memory hierarchy to matter, and the cache reuse that blocking provides (versus naive's column walk) would turn from a secondary effect into the main one.</p>
+
+<h2>5. Issues and debugging</h2>
+<ul>
+<li><b>Shared profiling node.</b> In Lab 1 the node was idle and every run used <code>taskset -c 0</code> with <code>--core S0-C0</code>. During this lab other students' jobs occupied core 0, so <code>taskset</code> failed with "Invalid argument" for some runs. Requesting the whole node (<code>srun --exclusive</code>) fixed that but each run then waited ≈20 minutes in the queue. Instead, each job now reads its allowed CPUs, pins to that CPU and passes the matching <code>S&lt;socket&gt;-C&lt;core&gt;</code> to toplev (the CPU number is not the core ID: CPU 4 is core S0-C7). A check run reproduced the Lab 1 profile of naive <code>matmul</code> at N = 64 (Backend 34.6 %, Retiring 64.6 %) and its runtime within 0.04 % of an exclusive run. Other jobs still share the L3 and memory bandwidth, which is why every configuration was run twice.</li>
+<li><b>Byte order in quantization.</b> The provided test is symmetric in byte order, so a reversed unpacking would pass it; the added test with distinct bytes catches that.</li>
+<li><b>Softmax for attention.</b> Reusing the Lab 1 <code>softmax()</code> would have produced log-probabilities and failed the attention test.</li>
+<li><b>Tooling.</b> Copying with <code>scp -r</code> from Windows left the server directories read-only (fixed with <code>chmod -R u+w</code>); the cluster has no matplotlib, so charts are generated as SVG with the Python standard library.</li>
+</ul>
+
+</body>
+</html>

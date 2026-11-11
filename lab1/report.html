@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lab 1 Report</title>
+<style>
+  @page { size: letter; margin: 0.55in 0.6in; }
+  :root { --ink: #0b0b0b; --ink2: #52514e; --rule: #c3c2b7; --wash: #f3f2ee; }
+  html { background: #fff; }
+  body { font-family: "Times New Roman", Times, serif; font-size: 10pt; line-height: 1.28; color: var(--ink);
+         max-width: 7.3in; margin: 0 auto; padding: 0.2in 0; background: #fff; }
+  h1 { font-size: 14pt; margin: 0 0 2pt; text-align: center; }
+  .byline { text-align: center; font-size: 9.5pt; color: var(--ink2); margin-bottom: 8pt; }
+  h2 { font-size: 11pt; margin: 9pt 0 3pt; border-bottom: 0.75pt solid var(--rule); padding-bottom: 1pt; }
+  h3 { font-size: 10pt; margin: 6pt 0 2pt; }
+  p { margin: 0 0 4pt; text-align: justify; }
+  ul { margin: 0 0 4pt; padding-left: 16pt; }
+  li { margin-bottom: 1.5pt; }
+  code { font-family: Consolas, "Courier New", monospace; font-size: 8.8pt; }
+  figure { margin: 6pt 0; break-inside: avoid; text-align: center; }
+  figure img { width: 6.6in; }
+  figcaption { font-size: 8.8pt; color: var(--ink2); text-align: left; margin-top: 2pt; }
+  table { border-collapse: collapse; width: 100%; font-size: 8.6pt; margin: 4pt 0 2pt; break-inside: avoid; }
+  th, td { border-bottom: 0.5pt solid var(--rule); padding: 1.5pt 4pt; text-align: right; }
+  th { border-bottom: 1pt solid var(--ink); font-weight: bold; }
+  td:first-child, th:first-child, td:nth-child(2), th:nth-child(2) { text-align: left; }
+  tr.grp td { border-top: 0.75pt solid var(--ink2); }
+  .hi { font-weight: bold; }
+  .cap { font-size: 8.8pt; color: var(--ink2); margin-bottom: 4pt; }
+</style>
+</head>
+<body>
+
+<h1>ECE5755 / CS5754 Lab 1: Implementing and Profiling ML Kernels</h1>
+<div class="byline">Pablo Penalba (pp555) &middot; Fall 2026</div>
+
+<h2>1. Implementation</h2>
+<p>All kernels are deliberately naive, compiled exactly as the provided Makefile does (<code>gcc</code>, no <code>-O</code> flag, i.e. <code>-O0</code>), to serve as the baseline for later labs. Every multi-dimensional array uses the provided pointer-to-pointer layout with each row allocated separately, because callers free outputs row by row.</p>
+<ul>
+<li><b><code>convolution()</code></b>: stride 1, no padding, output side <code>inputSize − kernelSize + 1</code>. Six nested loops (filter, out-row, out-col, channel, kernel-row, kernel-col); the accumulator is reset per output cell, the filter's bias is added once after summing over all channels, then <code>relu()</code> is applied.</li>
+<li><b><code>relu()</code></b>: <code>x &gt; 0 ? x : 0</code> on a scalar (<code>applyRelu()</code> is the provided array wrapper).</li>
+<li><b><code>linear()</code></b>: <code>out[j] = b[j] + Σ<sub>i</sub> in[i]·W[j][i]</code>. The weights are indexed <code>[output][input]</code> and include a bias, as the provided tests require (the primer's <code>W[i][j]</code>, bias-free form does not match the code). No activation inside.</li>
+<li><b><code>matmul()</code></b>: returns <code>NULL</code> if <code>A_cols ≠ B_rows</code>; otherwise the textbook i-j-k loop with a scalar accumulator.</li>
+<li><b><code>softmax()</code></b>: three passes: find the max, sum <code>expf(x − max)</code>, then write <code>(x − max) − logf(sum)</code>. This is <i>log</i>-softmax: the stub's comment says "normalise and apply log" and the provided test checks <code>Σ exp(out) = 1</code>. Subtracting the max prevents overflow.</li>
+<li>Also implemented (needed by the provided tests): <code>flatten()</code> (channel-major) and <code>predict()</code> (argmax, first index wins ties).</li>
+</ul>
+
+<h2>2. Unit tests</h2>
+<p>All 26 tests pass (<code>make all_tests</code>): the 11 provided plus 15 new ones. Expected values were computed by hand.</p>
+<ul>
+<li><b><code>test_conv.c</code> (5 new)</b>. The provided helpers only build 5×5 single-channel images and 1-channel 3×3 kernels, so I added helpers that build tensors of any shape from flat arrays. Cases: (1) the handout's 2-channel 4×4 example with a 2×2 filter and bias 2 (all nine outputs, 36…156), which checks cross-channel summation and a single bias add; (2) negative weights so ReLU must clip outputs to 0 while a positive one survives; (3) three filters with different biases (output depth, per-filter bias, ReLU on one filter only); (4) a 1×1 kernel over 2 channels; (5) a kernel the size of the image (1×1 output, boundary indexing).</li>
+<li><b><code>test_linear.c</code> (4 new)</b>: the primer's example rewritten for the <code>[out][in]</code> layout; identity weights (output = input); negative inputs, weights and biases (checks that no ReLU is applied); and 4 inputs → 1 output (non-square).</li>
+<li><b><code>test_matrix_ops.c</code> (6 new)</b>: the primer's 2×2 example; a non-square (2×3)(3×2) product; A·I = A; a (1×4)(4×1) dot product; a (2×1)(1×3) outer product (output larger than both inputs, catches M/N/K mix-ups); and a second incompatible shape (3×2)(3×2) that must return <code>NULL</code>.</li>
+</ul>
+
+<h2>3. Profiling methodology</h2>
+<p><b>Harness.</b> <code>perf/profile.c</code> takes <code>&lt;kernel&gt; &lt;size&gt; &lt;iters&gt;</code>, builds random inputs in [−1, 1] once (fixed seed, so every trial sees identical data), then calls the kernel <code>iters</code> times, freeing each output (the allocation is part of the function). Iteration counts were calibrated so each run spends ≈8.6–11 s inside the kernel loop. To quantify the code outside the kernel, I timed every large configuration with <code>iters = 0</code>: setup takes 0.009–0.37 s, i.e. <b>≤ 3.5 %</b> of a run (worst case <code>linear</code> 4096², which initialises 16 M random weights); for small configurations it is negligible. Setup-only runs were also profiled and look nothing like the kernels (e.g. relu 10³ setup: 29.5 % Frontend Bound vs. 1.4 % for the kernel), so without the repetition loop they would have distorted the results.</p>
+<p><b>Measurement.</b> Each run is a separate SLURM job on the <code>ece5755</code> node (Xeon Silver 4514Y, Sapphire Rapids; 48 KB L1d and 2 MB L2 per core, 30 MB L3 per socket), pinned to one core: <code>toplev.py --core S0-C0 -l1|-l2 -v --no-desc --force-cpu spr taskset -c 0 ./perf/profile …</code> (<code>perf/run_toplev.sh</code>). Each of 15 configurations (5 kernels × 3 sizes spanning L1/L2-resident to larger than the 30 MB L3) was run 3 times at level 1 and 3 times at level 2, and <code>perf/summarize.py</code> averages the trials. Every run reported MUX = 100 % (no counter multiplexing). Results are very repeatable: the standard deviation across trials is ≤ 0.4 percentage points for 13 of 15 configurations and 3.2 points in the worst case (<code>softmax</code> 10⁵), and the mean time per call of the level-1 and level-2 run sets differs by ≤ 1.6 %. The relu harness writes <code>relu(in[i])</code> into a separate output array instead of calling the in-place <code>applyRelu()</code>; otherwise every iteration after the first would see only non-negative inputs and the branch behaviour (below) would disappear.</p>
+
+<div style="break-inside: avoid;">
+<h2>4. Results</h2>
+<figure><img src="../lab1/lab1/results/topdown_l1.svg" alt="Top-down level 1 breakdown for each kernel and input size">
+<figcaption><b>Figure 1.</b> Top-down level 1 (% of pipeline slots, mean of 3 trials) for every kernel at three input sizes.</figcaption></figure>
+</div>
+<figure><img src="../lab1/lab1/results/topdown_l2.svg" alt="Top-down level 2 breakdown for each kernel and input size">
+<figcaption><b>Figure 2.</b> Top-down level 2: each level-1 category split into its two children (mean of 3 trials).</figcaption></figure>
+
+<table>
+<tr><th>Kernel</th><th>Size (working set)</th><th>ns / elem or MAC</th><th>Retiring</th><th>Bad spec.</th><th>Frontend</th><th>Backend</th><th>BE: Memory</th><th>BE: Core</th></tr>
+<tr class="grp"><td>relu</td><td>10³ (8 KB)</td><td>2.87</td><td class="hi">70.7</td><td>2.0</td><td>1.4</td><td>25.9</td><td>2.4</td><td>23.5</td></tr>
+<tr><td></td><td>10⁵ (800 KB)</td><td>10.91</td><td>18.5</td><td class="hi">61.5</td><td>15.0</td><td>4.9</td><td>0.0</td><td>5.0</td></tr>
+<tr><td></td><td>10⁷ (80 MB)</td><td>11.12</td><td>18.6</td><td class="hi">59.9</td><td>14.9</td><td>6.6</td><td>0.8</td><td>5.8</td></tr>
+<tr class="grp"><td>softmax</td><td>10³ (8 KB)</td><td>9.34</td><td class="hi">58.2</td><td>1.2</td><td>3.0</td><td>37.6</td><td>2.5</td><td>33.3</td></tr>
+<tr><td></td><td>10⁵ (800 KB)</td><td>8.12</td><td class="hi">66.3</td><td>0.3</td><td>3.4</td><td>30.0</td><td>2.0</td><td>29.1</td></tr>
+<tr><td></td><td>10⁷ (80 MB)</td><td>10.34</td><td class="hi">55.6</td><td>1.2</td><td>7.1</td><td>36.1</td><td>7.0</td><td>29.3</td></tr>
+<tr class="grp"><td>linear</td><td>256² (256 KB)</td><td>3.03</td><td class="hi">53.3</td><td>0.8</td><td>0.4</td><td>45.5</td><td>0.8</td><td>44.7</td></tr>
+<tr><td></td><td>1024² (4 MB)</td><td>3.11</td><td class="hi">51.8</td><td>0.4</td><td>0.4</td><td>47.5</td><td>1.2</td><td>46.3</td></tr>
+<tr><td></td><td>4096² (64 MB)</td><td>3.11</td><td class="hi">51.2</td><td>0.0</td><td>0.4</td><td>48.4</td><td>1.6</td><td>47.0</td></tr>
+<tr class="grp"><td>matmul</td><td>64³ (48 KB)</td><td>3.04</td><td class="hi">64.6</td><td>0.4</td><td>0.4</td><td>34.6</td><td>0.0</td><td>34.6</td></tr>
+<tr><td></td><td>256³ (768 KB)</td><td>3.12</td><td class="hi">62.0</td><td>2.0</td><td>0.4</td><td>35.6</td><td>0.0</td><td>35.5</td></tr>
+<tr><td></td><td>1024³ (12 MB)</td><td>3.37</td><td class="hi">57.0</td><td>0.4</td><td>0.4</td><td>42.2</td><td>1.2</td><td>41.0</td></tr>
+<tr class="grp"><td>conv</td><td>28², c1 f32 k3 (91 KB)</td><td>6.30</td><td class="hi">60.2</td><td>12.9</td><td>3.0</td><td>23.9</td><td>0.0</td><td>23.9</td></tr>
+<tr><td></td><td>64², c3 f16 k3 (295 KB)</td><td>5.17</td><td class="hi">67.8</td><td>5.9</td><td>1.5</td><td>24.7</td><td>0.0</td><td>24.7</td></tr>
+<tr><td></td><td>224², c3 f64 k5 (13 MB)</td><td>4.65</td><td class="hi">71.4</td><td>2.8</td><td>0.8</td><td>25.1</td><td>0.0</td><td>25.1</td></tr>
+</table>
+<div class="cap"><b>Table 1.</b> Level-1 metrics (% of slots) and level-2 Backend split, mean of 3 trials. Time is per element (relu, softmax) or per multiply-accumulate (linear, matmul, conv). Working set = inputs + outputs (+ weights).</div>
+
+<h2>5. Analysis: where the bottlenecks are and why</h2>
+<p><b>relu: branch-bound, not memory-bound.</b> At <code>-O0</code> the ternary compiles to a conditional branch, and with random-signed inputs that branch is a coin flip. For 10⁵ and 10⁷ elements ~60 % of slots are Bad Speculation, almost all Branch Mispredicts (Fig. 2), and Frontend Bound rises to 15 % largely Fetch Latency (8.3 %), consistent with the front end being re-steered after every misprediction. The 10³ case is the surprise: 71 % Retiring and 2 % Bad Speculation, and 3.8× faster per element. Because the same 1 000-element sign pattern repeats every call, the history-based branch predictor learns it; 10⁵ outcomes are far beyond what it can memorise. Despite the 80 MB working set at 10⁷, Memory Bound stays below 1 %: at ~11 ns per element the loop needs only ≈0.7 GB/s of sequential, prefetch-friendly traffic. The primer's starting hypothesis ("leans memory-bound as inputs grow") is therefore <i>refuted</i> for this implementation; the bottleneck is control flow.</p>
+<p><b>linear and matmul: core-bound on a dependency chain.</b> Both spend ~51–65 % of slots retiring and ~35–48 % in Backend Bound, which level 2 attributes almost entirely to Core Bound (Memory Bound ≤ 1.6 % even when the 64 MB weight matrix of <code>linear</code> 4096² must stream from DRAM on every call). The cost per multiply-accumulate is flat at 3.0–3.1 ns across a 256× change in data size, which is the signature of a latency chain rather than a memory limit: every iteration adds into the same <code>sum</code>, and at <code>-O0</code> that accumulator also round-trips through a stack slot, so iterations cannot overlap and few execution ports are busy per cycle. Memory accesses are independent of this chain, so the out-of-order core overlaps them with it: the 64 MB weight stream needs only ≈1.3 GB/s. Naive <code>matmul</code> walks <code>B</code> down a column (a 4 KB stride at N = 1024: a new cache line, and nearly always a new page, every access); this is visible only as a small rise in Backend Bound (34.6 → 42.2 %) and per-MAC time (+11 %) at 1024³, not as the dominant Memory Bound (84 %) reported for the same textbook loop in the ISPASS'14 matrix-multiply case study, where a much faster inner loop exposes the column-stride misses.</p>
+<p><b>conv: highest Retiring, but on overhead.</b> Convolution retires 60–71 % of slots with zero Memory Bound: its inputs are small and reused 9–75 times per output, so they stay in L1/L2. High Retiring here does not mean efficient: at 4.7–6.3 ns per MAC it is slower than <code>matmul</code>, because every <code>image[c][i+ki][j+kj]</code> and <code>kernel[f][c][ki][kj]</code> access at <code>-O0</code> dereferences 3–4 pointer levels; most retired uops are address arithmetic and loads (level 2: 58–69 % "light operations"). Bad Speculation falls from 12.9 % to 5.9 % to 2.8 % as the work per output grows from 9 to 27 to 75 MACs: the data-dependent ReLU branch runs once per output, so its mispredictions are amortised over more arithmetic. Core Bound stays ≈24–25 % (the same accumulator chain as above).</p>
+<p><b>softmax: compute-bound on the math library.</b> 56–66 % Retiring and 29–33 % Core Bound come mostly from the <code>expf()</code> call per element (and the extra <code>logf</code> and three passes over the data). Branch prediction is excellent (≤ 1.2 %) because the running-max comparison is rarely true. It is the one kernel whose Memory Bound clearly grows with size: 2–2.5 % → 7.0 % at 10⁷ elements (80 MB), where its three passes no longer fit in the 30 MB L3, and Frontend Bound also rises (3 → 7 %).</p>
+<p><b>Compute vs. memory as inputs grow.</b> Across all kernels, Memory Bound grows with size only slightly (≤ 7 %) because the unoptimised kernels consume data far more slowly (0.7–1.6 GB/s) than one core can stream it. Arithmetic intensity predicts what changes once the compute is optimised: relu, softmax and linear perform O(1) operations per value loaded (each weight of <code>linear</code> is used exactly once), so after removing the branch and the dependency chains they should become memory-bandwidth bound at large sizes. Matmul and convolution reuse each value O(N) or O(K²·F) times, so they should stay compute-bound, provided the access pattern is cache-friendly (blocking/tiling); naive matmul at 1024³ is the first that would turn memory-bound.</p>
+
+<h2>6. Issues and debugging</h2>
+<ul>
+<li><b>Primer vs. code.</b> The primer describes plain softmax and <code>linear</code> weights as <code>W[i][j]</code> without bias, but the provided tests require log-softmax and <code>W[out][in]</code> + bias. I treated the provided tests as the specification.</li>
+<li><b>Test helpers.</b> <code>init_image/init_kernel</code> only accept 5×5 and 1×3×3 arrays, so the handout's 2-channel example could not be expressed with them; I wrote shape-generic helpers. The provided <code>test_conv</code> cleanup passes <code>kernelSize</code> where it means the output size; it works only because both are 3.</li>
+<li><b>Profiling node.</b> The login node is a Cascade Lake Xeon (Gold 6252N), so <code>--force-cpu spr</code> would mislabel its counters; all profiling was run on the Sapphire Rapids <code>ece5755</code> partition, and each run was kept well under its 5-minute job limit.</li>
+<li><b>Hidden branch behaviour.</b> An early harness using the in-place <code>applyRelu()</code> would have made all inputs non-negative after the first iteration, hiding the mispredictions that dominate relu; the harness now preserves the input.</li>
+<li><b>Tooling.</b> The cluster lacks matplotlib/pip, so the charts are generated as SVG with Python's standard library (<code>perf/plot.py</code>).</li>
+</ul>
+
+<h2>7. Ideas for improving performance (from the Top-down data)</h2>
+<ul>
+<li><b>relu (Bad Speculation 60 %)</b>: make it branchless (<code>fmaxf(x, 0)</code>, or <code>-O2</code>, which emits <code>maxss</code>/<code>maxps</code>), then vectorise (AVX-512: 16 floats per instruction). It should then become memory-bound at 10⁷.</li>
+<li><b>linear / matmul / conv (Core Bound 24–47 %)</b>: keep the accumulator in a register (<code>-O2</code>) and break the single dependency chain with several independent accumulators or SIMD lanes; for matmul, interchange to i-k-j so <code>B</code> is read along rows (unit stride) and tile for L1/L2.</li>
+<li><b>Data layout (conv's address-arithmetic Retiring)</b>: store tensors contiguously instead of as pointer-to-pointer arrays to remove the 3–4 dependent pointer loads per element; then lower convolution to matmul (im2col), as planned for later labs.</li>
+<li><b>softmax (Core Bound on <code>expf</code>)</b>: fuse the max and exp passes, vectorise <code>exp</code>, and reduce passes over memory, which matters once it becomes memory-bound at 10⁷.</li>
+</ul>
+
+</body>
+</html>

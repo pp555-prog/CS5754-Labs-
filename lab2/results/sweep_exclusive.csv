@@ -1,0 +1,3 @@
+variant,I,J,K,size,iters,trial,total_s,per_call_us
+naive,0,0,0,64,20000,1,15.918603,795.930
+naive,0,0,0,64,20000,2,15.921253,796.063

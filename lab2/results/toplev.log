@@ -1,0 +1,122 @@
+nohup: ignoring input
+[18:14:25] results/naive-n64_l1_t1.txt
+RESULT kernel=matmul size=64 iters=20000 total_s=15.952655 per_call_us=797.633 checksum=6.044059
+[18:14:42] results/naive-n64_l1_t2.txt
+RESULT kernel=matmul size=64 iters=20000 total_s=15.949740 per_call_us=797.487 checksum=6.044059
+[18:14:59] results/naive-n64_l2_t1.txt
+RESULT kernel=matmul size=64 iters=20000 total_s=15.955946 per_call_us=797.797 checksum=6.044059
+[18:15:16] results/naive-n64_l2_t2.txt
+RESULT kernel=matmul size=64 iters=20000 total_s=15.939891 per_call_us=796.995 checksum=6.044059
+[18:15:34] results/naive-n64-setup_l1_t1.txt
+RESULT kernel=matmul size=64 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[18:15:35] results/t169_32_9-n64_l1_t1.txt
+RESULT kernel=matmul_blocking size=64 iters=20000 total_s=10.107041 per_call_us=505.352 checksum=6.044059
+[18:15:47] results/t169_32_9-n64_l1_t2.txt
+RESULT kernel=matmul_blocking size=64 iters=20000 total_s=10.205881 per_call_us=510.294 checksum=6.044059
+[18:15:58] results/t169_32_9-n64_l2_t1.txt
+RESULT kernel=matmul_blocking size=64 iters=20000 total_s=10.154621 per_call_us=507.731 checksum=6.044059
+[18:16:09] results/t169_32_9-n64_l2_t2.txt
+RESULT kernel=matmul_blocking size=64 iters=20000 total_s=9.996925 per_call_us=499.846 checksum=6.044059
+[18:16:20] results/t169_32_9-n64-setup_l1_t1.txt
+RESULT kernel=matmul_blocking size=64 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[18:16:21] results/t64_64_64-n64_l1_t1.txt
+RESULT kernel=matmul_blocking size=64 iters=20000 total_s=9.166562 per_call_us=458.328 checksum=6.044059
+[18:16:32] results/t64_64_64-n64_l1_t2.txt
+RESULT kernel=matmul_blocking size=64 iters=20000 total_s=9.157708 per_call_us=457.885 checksum=6.044059
+[18:16:42] results/t64_64_64-n64_l2_t1.txt
+RESULT kernel=matmul_blocking size=64 iters=20000 total_s=9.264788 per_call_us=463.239 checksum=6.044059
+[18:16:52] results/t64_64_64-n64_l2_t2.txt
+RESULT kernel=matmul_blocking size=64 iters=20000 total_s=9.172158 per_call_us=458.608 checksum=6.044059
+[18:17:02] results/t64_64_64-n64-setup_l1_t1.txt
+RESULT kernel=matmul_blocking size=64 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[18:17:03] results/t32_256_32-n64_l1_t1.txt
+RESULT kernel=matmul_blocking size=64 iters=20000 total_s=9.513958 per_call_us=475.698 checksum=6.044059
+[18:17:16] results/t32_256_32-n64_l1_t2.txt
+RESULT kernel=matmul_blocking size=64 iters=20000 total_s=9.360340 per_call_us=468.017 checksum=6.044059
+[18:17:26] results/t32_256_32-n64_l2_t1.txt
+RESULT kernel=matmul_blocking size=64 iters=20000 total_s=9.511161 per_call_us=475.558 checksum=6.044059
+[18:18:08] results/t32_256_32-n64_l2_t2.txt
+RESULT kernel=matmul_blocking size=64 iters=20000 total_s=9.569767 per_call_us=478.488 checksum=6.044059
+[18:18:19] results/t32_256_32-n64-setup_l1_t1.txt
+RESULT kernel=matmul_blocking size=64 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[18:18:20] results/naive-n512_l1_t1.txt
+RESULT kernel=matmul size=512 iters=20 total_s=8.399489 per_call_us=419974.451 checksum=3.543195
+[18:18:31] results/naive-n512_l1_t2.txt
+RESULT kernel=matmul size=512 iters=20 total_s=8.409625 per_call_us=420481.265 checksum=3.543195
+[18:19:07] results/naive-n512_l2_t1.txt
+RESULT kernel=matmul size=512 iters=20 total_s=8.417102 per_call_us=420855.094 checksum=3.543195
+[18:19:16] results/naive-n512_l2_t2.txt
+RESULT kernel=matmul size=512 iters=20 total_s=8.427089 per_call_us=421354.461 checksum=3.543195
+[18:19:27] results/naive-n512-setup_l1_t1.txt
+RESULT kernel=matmul size=512 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[18:19:28] results/t169_32_9-n512_l1_t1.txt
+RESULT kernel=matmul_blocking size=512 iters=20 total_s=5.157963 per_call_us=257898.145 checksum=3.543195
+[18:19:35] results/t169_32_9-n512_l1_t2.txt
+RESULT kernel=matmul_blocking size=512 iters=20 total_s=5.158173 per_call_us=257908.638 checksum=3.543195
+[18:19:41] results/t169_32_9-n512_l2_t1.txt
+RESULT kernel=matmul_blocking size=512 iters=20 total_s=5.153160 per_call_us=257658.025 checksum=3.543195
+[18:19:47] results/t169_32_9-n512_l2_t2.txt
+RESULT kernel=matmul_blocking size=512 iters=20 total_s=5.151840 per_call_us=257591.994 checksum=3.543195
+[18:19:53] results/t169_32_9-n512-setup_l1_t1.txt
+RESULT kernel=matmul_blocking size=512 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[18:19:54] results/t64_64_64-n512_l1_t1.txt
+RESULT kernel=matmul_blocking size=512 iters=20 total_s=4.740093 per_call_us=237004.671 checksum=3.543195
+[18:20:02] results/t64_64_64-n512_l1_t2.txt
+RESULT kernel=matmul_blocking size=512 iters=20 total_s=4.761302 per_call_us=238065.097 checksum=3.543195
+[18:20:08] results/t64_64_64-n512_l2_t1.txt
+RESULT kernel=matmul_blocking size=512 iters=20 total_s=4.737049 per_call_us=236852.454 checksum=3.543195
+[18:20:15] results/t64_64_64-n512_l2_t2.txt
+RESULT kernel=matmul_blocking size=512 iters=20 total_s=4.756025 per_call_us=237801.261 checksum=3.543195
+[18:20:21] results/t64_64_64-n512-setup_l1_t1.txt
+RESULT kernel=matmul_blocking size=512 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[18:20:22] results/t32_256_32-n512_l1_t1.txt
+RESULT kernel=matmul_blocking size=512 iters=20 total_s=4.594841 per_call_us=229742.034 checksum=3.543195
+[18:20:30] results/t32_256_32-n512_l1_t2.txt
+RESULT kernel=matmul_blocking size=512 iters=20 total_s=4.588140 per_call_us=229406.977 checksum=3.543195
+[18:20:36] results/t32_256_32-n512_l2_t1.txt
+RESULT kernel=matmul_blocking size=512 iters=20 total_s=4.578719 per_call_us=228935.956 checksum=3.543195
+[18:20:42] results/t32_256_32-n512_l2_t2.txt
+RESULT kernel=matmul_blocking size=512 iters=20 total_s=4.578608 per_call_us=228930.378 checksum=3.543195
+[18:20:48] results/t32_256_32-n512-setup_l1_t1.txt
+RESULT kernel=matmul_blocking size=512 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[18:20:49] results/naive-n1536_l1_t1.txt
+RESULT kernel=matmul size=1536 iters=1 total_s=12.251092 per_call_us=12251092.350 checksum=-20.414433
+[18:21:04] results/naive-n1536_l1_t2.txt
+RESULT kernel=matmul size=1536 iters=1 total_s=12.255697 per_call_us=12255696.667 checksum=-20.414433
+[18:21:17] results/naive-n1536_l2_t1.txt
+RESULT kernel=matmul size=1536 iters=1 total_s=12.243652 per_call_us=12243652.275 checksum=-20.414433
+[18:21:30] results/naive-n1536_l2_t2.txt
+RESULT kernel=matmul size=1536 iters=1 total_s=12.248352 per_call_us=12248352.473 checksum=-20.414433
+[18:21:46] results/naive-n1536-setup_l1_t1.txt
+RESULT kernel=matmul size=1536 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[18:21:47] results/t169_32_9-n1536_l1_t1.txt
+RESULT kernel=matmul_blocking size=1536 iters=1 total_s=7.009490 per_call_us=7009489.612 checksum=-20.414433
+[18:21:56] results/t169_32_9-n1536_l1_t2.txt
+RESULT kernel=matmul_blocking size=1536 iters=1 total_s=6.963726 per_call_us=6963726.117 checksum=-20.414433
+[18:22:04] results/t169_32_9-n1536_l2_t1.txt
+RESULT kernel=matmul_blocking size=1536 iters=1 total_s=6.944481 per_call_us=6944481.445 checksum=-20.414433
+[18:22:12] results/t169_32_9-n1536_l2_t2.txt
+RESULT kernel=matmul_blocking size=1536 iters=1 total_s=6.984839 per_call_us=6984839.218 checksum=-20.414433
+[18:22:20] results/t169_32_9-n1536-setup_l1_t1.txt
+RESULT kernel=matmul_blocking size=1536 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[18:22:21] results/t64_64_64-n1536_l1_t1.txt
+RESULT kernel=matmul_blocking size=1536 iters=1 total_s=6.428703 per_call_us=6428702.744 checksum=-20.414433
+[18:22:30] results/t64_64_64-n1536_l1_t2.txt
+RESULT kernel=matmul_blocking size=1536 iters=1 total_s=6.393690 per_call_us=6393689.891 checksum=-20.414433
+[18:22:38] results/t64_64_64-n1536_l2_t1.txt
+RESULT kernel=matmul_blocking size=1536 iters=1 total_s=6.386232 per_call_us=6386231.585 checksum=-20.414433
+[18:22:46] results/t64_64_64-n1536_l2_t2.txt
+RESULT kernel=matmul_blocking size=1536 iters=1 total_s=6.419609 per_call_us=6419609.059 checksum=-20.414433
+[18:22:54] results/t64_64_64-n1536-setup_l1_t1.txt
+RESULT kernel=matmul_blocking size=1536 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[18:22:55] results/t32_256_32-n1536_l1_t1.txt
+RESULT kernel=matmul_blocking size=1536 iters=1 total_s=6.182726 per_call_us=6182725.732 checksum=-20.414433
+[18:23:03] results/t32_256_32-n1536_l1_t2.txt
+RESULT kernel=matmul_blocking size=1536 iters=1 total_s=6.176312 per_call_us=6176311.537 checksum=-20.414433
+[18:23:10] results/t32_256_32-n1536_l2_t1.txt
+RESULT kernel=matmul_blocking size=1536 iters=1 total_s=6.172875 per_call_us=6172874.929 checksum=-20.414433
+[18:23:17] results/t32_256_32-n1536_l2_t2.txt
+RESULT kernel=matmul_blocking size=1536 iters=1 total_s=6.177630 per_call_us=6177630.220 checksum=-20.414433
+[18:23:24] results/t32_256_32-n1536-setup_l1_t1.txt
+RESULT kernel=matmul_blocking size=1536 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[18:23:25] done; now run: python3 perf/summarize.py && python3 perf/plot.py

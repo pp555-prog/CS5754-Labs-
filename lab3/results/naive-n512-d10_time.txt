@@ -1,0 +1,7 @@
+srun: job 489360 queued and waiting for resources
+srun: job 489360 has been allocated resources
+PINNED cpu=0 allowed=0 core=S0-C0 smt_siblings=0
+RESULT kernel=matmul size=512 density=0.1 nnz=26272 iters=14 total_s=5.845705 per_call_us=417550.367 csr_build_us=0.000 checksum=30.653727
+real 5.87
+user 5.85
+sys 0.01

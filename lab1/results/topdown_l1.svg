@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="480" viewBox="0 0 760 480" font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<rect width="760" height="480" fill="#fcfcfb"/>
+<text x="10.0" y="20.0" font-size="14" fill="#0b0b0b" text-anchor="start" font-weight="600" dominant-baseline="middle">Top-down level 1: % of pipeline slots (mean of trials)</text>
+<rect x="10.0" y="39.0" width="10" height="10" rx="2" fill="#2a78d6"/>
+<text x="25.0" y="44.0" font-size="11" fill="#52514e" text-anchor="start" font-weight="normal" dominant-baseline="middle">Frontend bound</text>
+<rect x="195.0" y="39.0" width="10" height="10" rx="2" fill="#eb6834"/>
+<text x="210.0" y="44.0" font-size="11" fill="#52514e" text-anchor="start" font-weight="normal" dominant-baseline="middle">Bad speculation</text>
+<rect x="380.0" y="39.0" width="10" height="10" rx="2" fill="#1baf7a"/>
+<text x="395.0" y="44.0" font-size="11" fill="#52514e" text-anchor="start" font-weight="normal" dominant-baseline="middle">Backend bound</text>
+<rect x="565.0" y="39.0" width="10" height="10" rx="2" fill="#eda100"/>
+<text x="580.0" y="44.0" font-size="11" fill="#52514e" text-anchor="start" font-weight="normal" dominant-baseline="middle">Retiring</text>
+<line x1="170.0" y1="72" x2="170.0" y2="432" stroke="#e1e0d9" stroke-width="1"/>
+<text x="170.0" y="446.0" font-size="10" fill="#898781" text-anchor="middle" font-weight="normal" dominant-baseline="middle">0%</text>
+<line x1="282.0" y1="72" x2="282.0" y2="432" stroke="#e1e0d9" stroke-width="1"/>
+<text x="282.0" y="446.0" font-size="10" fill="#898781" text-anchor="middle" font-weight="normal" dominant-baseline="middle">20%</text>
+<line x1="394.0" y1="72" x2="394.0" y2="432" stroke="#e1e0d9" stroke-width="1"/>
+<text x="394.0" y="446.0" font-size="10" fill="#898781" text-anchor="middle" font-weight="normal" dominant-baseline="middle">40%</text>
+<line x1="506.0" y1="72" x2="506.0" y2="432" stroke="#e1e0d9" stroke-width="1"/>
+<text x="506.0" y="446.0" font-size="10" fill="#898781" text-anchor="middle" font-weight="normal" dominant-baseline="middle">60%</text>
+<line x1="618.0" y1="72" x2="618.0" y2="432" stroke="#e1e0d9" stroke-width="1"/>
+<text x="618.0" y="446.0" font-size="10" fill="#898781" text-anchor="middle" font-weight="normal" dominant-baseline="middle">80%</text>
+<line x1="730.0" y1="72" x2="730.0" y2="432" stroke="#e1e0d9" stroke-width="1"/>
+<text x="730.0" y="446.0" font-size="10" fill="#898781" text-anchor="middle" font-weight="normal" dominant-baseline="middle">100%</text>
+<line x1="170" y1="432" x2="730" y2="432" stroke="#c3c2b7" stroke-width="1"/>
+<text x="162.0" y="84.0" font-size="11" fill="#0b0b0b" text-anchor="end" font-weight="normal" dominant-baseline="middle">relu  n = 10³</text>
+<rect x="170.0" y="76.0" width="7.8" height="16" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="177.8" y="76.0" width="11.2" height="16" fill="#eb6834" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="189.0" y="76.0" width="145.0" height="16" fill="#1baf7a" stroke="#fcfcfb" stroke-width="1"/>
+<text x="261.6" y="84.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">26</text>
+<rect x="334.1" y="76.0" width="396.1" height="16" fill="#eda100" stroke="#fcfcfb" stroke-width="1"/>
+<text x="532.1" y="84.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">71</text>
+<text x="162.0" y="108.0" font-size="11" fill="#0b0b0b" text-anchor="end" font-weight="normal" dominant-baseline="middle">relu  n = 10⁵</text>
+<rect x="170.0" y="100.0" width="84.0" height="16" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1"/>
+<text x="212.0" y="108.0" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="normal" dominant-baseline="middle">15</text>
+<rect x="254.0" y="100.0" width="344.6" height="16" fill="#eb6834" stroke="#fcfcfb" stroke-width="1"/>
+<text x="426.3" y="108.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">62</text>
+<rect x="598.6" y="100.0" width="27.4" height="16" fill="#1baf7a" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="626.0" y="100.0" width="103.8" height="16" fill="#eda100" stroke="#fcfcfb" stroke-width="1"/>
+<text x="677.9" y="108.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">19</text>
+<text x="162.0" y="132.0" font-size="11" fill="#0b0b0b" text-anchor="end" font-weight="normal" dominant-baseline="middle">relu  n = 10⁷</text>
+<rect x="170.0" y="124.0" width="83.4" height="16" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1"/>
+<text x="211.7" y="132.0" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="normal" dominant-baseline="middle">15</text>
+<rect x="253.4" y="124.0" width="335.4" height="16" fill="#eb6834" stroke="#fcfcfb" stroke-width="1"/>
+<text x="421.2" y="132.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">60</text>
+<rect x="588.9" y="124.0" width="37.0" height="16" fill="#1baf7a" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="625.8" y="124.0" width="104.2" height="16" fill="#eda100" stroke="#fcfcfb" stroke-width="1"/>
+<text x="677.9" y="132.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">19</text>
+<line x1="10" y1="144" x2="730" y2="144" stroke="#c3c2b7" stroke-width="0.75"/>
+<text x="162.0" y="156.0" font-size="11" fill="#0b0b0b" text-anchor="end" font-weight="normal" dominant-baseline="middle">softmax  n = 10³</text>
+<rect x="170.0" y="148.0" width="16.8" height="16" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="186.8" y="148.0" width="6.7" height="16" fill="#eb6834" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="193.5" y="148.0" width="210.6" height="16" fill="#1baf7a" stroke="#fcfcfb" stroke-width="1"/>
+<text x="298.8" y="156.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">38</text>
+<rect x="404.1" y="148.0" width="326.1" height="16" fill="#eda100" stroke="#fcfcfb" stroke-width="1"/>
+<text x="567.1" y="156.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">58</text>
+<text x="162.0" y="180.0" font-size="11" fill="#0b0b0b" text-anchor="end" font-weight="normal" dominant-baseline="middle">softmax  n = 10⁵</text>
+<rect x="170.0" y="172.0" width="19.0" height="16" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="189.0" y="172.0" width="1.5" height="16" fill="#eb6834" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="190.6" y="172.0" width="167.8" height="16" fill="#1baf7a" stroke="#fcfcfb" stroke-width="1"/>
+<text x="274.5" y="180.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">30</text>
+<rect x="358.4" y="172.0" width="371.4" height="16" fill="#eda100" stroke="#fcfcfb" stroke-width="1"/>
+<text x="544.1" y="180.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">66</text>
+<text x="162.0" y="204.0" font-size="11" fill="#0b0b0b" text-anchor="end" font-weight="normal" dominant-baseline="middle">softmax  n = 10⁷</text>
+<rect x="170.0" y="196.0" width="39.9" height="16" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="209.9" y="196.0" width="6.7" height="16" fill="#eb6834" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="216.6" y="196.0" width="202.2" height="16" fill="#1baf7a" stroke="#fcfcfb" stroke-width="1"/>
+<text x="317.7" y="204.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">36</text>
+<rect x="418.8" y="196.0" width="311.2" height="16" fill="#eda100" stroke="#fcfcfb" stroke-width="1"/>
+<text x="574.4" y="204.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">56</text>
+<line x1="10" y1="216" x2="730" y2="216" stroke="#c3c2b7" stroke-width="0.75"/>
+<text x="162.0" y="228.0" font-size="11" fill="#0b0b0b" text-anchor="end" font-weight="normal" dominant-baseline="middle">linear  256 × 256</text>
+<rect x="170.0" y="220.0" width="2.2" height="16" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="172.2" y="220.0" width="4.5" height="16" fill="#eb6834" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="176.7" y="220.0" width="254.8" height="16" fill="#1baf7a" stroke="#fcfcfb" stroke-width="1"/>
+<text x="304.1" y="228.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">46</text>
+<rect x="431.5" y="220.0" width="298.5" height="16" fill="#eda100" stroke="#fcfcfb" stroke-width="1"/>
+<text x="580.8" y="228.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">53</text>
+<text x="162.0" y="252.0" font-size="11" fill="#0b0b0b" text-anchor="end" font-weight="normal" dominant-baseline="middle">linear  1024 × 1024</text>
+<rect x="170.0" y="244.0" width="2.2" height="16" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="172.2" y="244.0" width="2.2" height="16" fill="#eb6834" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="174.5" y="244.0" width="266.0" height="16" fill="#1baf7a" stroke="#fcfcfb" stroke-width="1"/>
+<text x="307.5" y="252.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">48</text>
+<rect x="440.5" y="244.0" width="290.1" height="16" fill="#eda100" stroke="#fcfcfb" stroke-width="1"/>
+<text x="585.5" y="252.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">52</text>
+<text x="162.0" y="276.0" font-size="11" fill="#0b0b0b" text-anchor="end" font-weight="normal" dominant-baseline="middle">linear  4096 × 4096</text>
+<rect x="170.0" y="268.0" width="2.2" height="16" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="172.2" y="268.0" width="271.0" height="16" fill="#1baf7a" stroke="#fcfcfb" stroke-width="1"/>
+<text x="307.8" y="276.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">48</text>
+<rect x="443.3" y="268.0" width="286.7" height="16" fill="#eda100" stroke="#fcfcfb" stroke-width="1"/>
+<text x="586.6" y="276.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">51</text>
+<line x1="10" y1="288" x2="730" y2="288" stroke="#c3c2b7" stroke-width="0.75"/>
+<text x="162.0" y="300.0" font-size="11" fill="#0b0b0b" text-anchor="end" font-weight="normal" dominant-baseline="middle">matmul  64³</text>
+<rect x="170.0" y="292.0" width="2.2" height="16" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="172.2" y="292.0" width="2.2" height="16" fill="#eb6834" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="174.5" y="292.0" width="193.6" height="16" fill="#1baf7a" stroke="#fcfcfb" stroke-width="1"/>
+<text x="271.3" y="300.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">35</text>
+<rect x="368.1" y="292.0" width="361.9" height="16" fill="#eda100" stroke="#fcfcfb" stroke-width="1"/>
+<text x="549.0" y="300.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">65</text>
+<text x="162.0" y="324.0" font-size="11" fill="#0b0b0b" text-anchor="end" font-weight="normal" dominant-baseline="middle">matmul  256³</text>
+<rect x="170.0" y="316.0" width="2.2" height="16" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="172.2" y="316.0" width="11.2" height="16" fill="#eb6834" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="183.4" y="316.0" width="199.5" height="16" fill="#1baf7a" stroke="#fcfcfb" stroke-width="1"/>
+<text x="283.2" y="324.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">36</text>
+<rect x="383.0" y="316.0" width="347.4" height="16" fill="#eda100" stroke="#fcfcfb" stroke-width="1"/>
+<text x="556.7" y="324.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">62</text>
+<text x="162.0" y="348.0" font-size="11" fill="#0b0b0b" text-anchor="end" font-weight="normal" dominant-baseline="middle">matmul  1024³</text>
+<rect x="170.0" y="340.0" width="2.2" height="16" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="172.2" y="340.0" width="2.2" height="16" fill="#eb6834" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="174.5" y="340.0" width="236.3" height="16" fill="#1baf7a" stroke="#fcfcfb" stroke-width="1"/>
+<text x="292.6" y="348.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">42</text>
+<rect x="410.8" y="340.0" width="319.2" height="16" fill="#eda100" stroke="#fcfcfb" stroke-width="1"/>
+<text x="570.4" y="348.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">57</text>
+<line x1="10" y1="360" x2="730" y2="360" stroke="#c3c2b7" stroke-width="0.75"/>
+<text x="162.0" y="372.0" font-size="11" fill="#0b0b0b" text-anchor="end" font-weight="normal" dominant-baseline="middle">conv  28², c1 f32 k3</text>
+<rect x="170.0" y="364.0" width="16.8" height="16" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="186.8" y="364.0" width="72.1" height="16" fill="#eb6834" stroke="#fcfcfb" stroke-width="1"/>
+<text x="222.8" y="372.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">13</text>
+<rect x="258.9" y="364.0" width="133.7" height="16" fill="#1baf7a" stroke="#fcfcfb" stroke-width="1"/>
+<text x="325.7" y="372.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">24</text>
+<rect x="392.5" y="364.0" width="337.1" height="16" fill="#eda100" stroke="#fcfcfb" stroke-width="1"/>
+<text x="561.1" y="372.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">60</text>
+<text x="162.0" y="396.0" font-size="11" fill="#0b0b0b" text-anchor="end" font-weight="normal" dominant-baseline="middle">conv  64², c3 f16 k3</text>
+<rect x="170.0" y="388.0" width="8.4" height="16" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="178.4" y="388.0" width="33.0" height="16" fill="#eb6834" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="211.4" y="388.0" width="138.3" height="16" fill="#1baf7a" stroke="#fcfcfb" stroke-width="1"/>
+<text x="280.6" y="396.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">25</text>
+<rect x="349.8" y="388.0" width="379.7" height="16" fill="#eda100" stroke="#fcfcfb" stroke-width="1"/>
+<text x="539.6" y="396.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">68</text>
+<text x="162.0" y="420.0" font-size="11" fill="#0b0b0b" text-anchor="end" font-weight="normal" dominant-baseline="middle">conv  224², c3 f64 k5</text>
+<rect x="170.0" y="412.0" width="4.5" height="16" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="174.5" y="412.0" width="15.7" height="16" fill="#eb6834" stroke="#fcfcfb" stroke-width="1"/>
+<rect x="190.2" y="412.0" width="140.6" height="16" fill="#1baf7a" stroke="#fcfcfb" stroke-width="1"/>
+<text x="260.4" y="420.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">25</text>
+<rect x="330.7" y="412.0" width="399.8" height="16" fill="#eda100" stroke="#fcfcfb" stroke-width="1"/>
+<text x="530.6" y="420.0" font-size="10" fill="#0b0b0b" text-anchor="middle" font-weight="normal" dominant-baseline="middle">71</text>
+</svg>

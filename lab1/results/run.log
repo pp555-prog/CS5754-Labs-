@@ -1,0 +1,212 @@
+nohup: ignoring input
+[14:42:04] results/relu_1e3_l1_t1.txt
+RESULT kernel=relu size=1000 iters=3000000 total_s=8.598899 per_call_us=2.866 checksum=0.995742
+[14:42:13] results/relu_1e3_l1_t2.txt
+RESULT kernel=relu size=1000 iters=3000000 total_s=8.604087 per_call_us=2.868 checksum=0.995742
+[14:42:23] results/relu_1e3_l1_t3.txt
+RESULT kernel=relu size=1000 iters=3000000 total_s=8.589549 per_call_us=2.863 checksum=0.995742
+[14:42:33] results/relu_1e3_l2_t1.txt
+RESULT kernel=relu size=1000 iters=3000000 total_s=8.596141 per_call_us=2.865 checksum=0.995742
+[14:42:43] results/relu_1e3_l2_t2.txt
+RESULT kernel=relu size=1000 iters=3000000 total_s=8.598975 per_call_us=2.866 checksum=0.995742
+[14:42:53] results/relu_1e3_l2_t3.txt
+RESULT kernel=relu size=1000 iters=3000000 total_s=8.598162 per_call_us=2.866 checksum=0.995742
+[14:43:03] results/relu_1e3-setup_l1_t1.txt
+RESULT kernel=relu size=1000 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[14:43:04] results/relu_1e5_l1_t1.txt
+RESULT kernel=relu size=100000 iters=9000 total_s=9.819656 per_call_us=1091.073 checksum=0.050649
+[14:43:15] results/relu_1e5_l1_t2.txt
+RESULT kernel=relu size=100000 iters=9000 total_s=9.823328 per_call_us=1091.481 checksum=0.050649
+[14:43:26] results/relu_1e5_l1_t3.txt
+RESULT kernel=relu size=100000 iters=9000 total_s=9.820206 per_call_us=1091.134 checksum=0.050649
+[14:43:37] results/relu_1e5_l2_t1.txt
+RESULT kernel=relu size=100000 iters=9000 total_s=9.821685 per_call_us=1091.298 checksum=0.050649
+[14:43:48] results/relu_1e5_l2_t2.txt
+RESULT kernel=relu size=100000 iters=9000 total_s=9.821923 per_call_us=1091.325 checksum=0.050649
+[14:43:59] results/relu_1e5_l2_t3.txt
+RESULT kernel=relu size=100000 iters=9000 total_s=9.822643 per_call_us=1091.405 checksum=0.050649
+[14:44:10] results/relu_1e5-setup_l1_t1.txt
+RESULT kernel=relu size=100000 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[14:44:11] results/relu_1e7_l1_t1.txt
+RESULT kernel=relu size=10000000 iters=90 total_s=10.008747 per_call_us=111208.299 checksum=0.000000
+[14:44:23] results/relu_1e7_l1_t2.txt
+RESULT kernel=relu size=10000000 iters=90 total_s=10.009693 per_call_us=111218.808 checksum=0.000000
+[14:44:34] results/relu_1e7_l1_t3.txt
+RESULT kernel=relu size=10000000 iters=90 total_s=10.008305 per_call_us=111203.384 checksum=0.000000
+[14:44:45] results/relu_1e7_l2_t1.txt
+RESULT kernel=relu size=10000000 iters=90 total_s=10.009227 per_call_us=111213.631 checksum=0.000000
+[14:44:56] results/relu_1e7_l2_t2.txt
+RESULT kernel=relu size=10000000 iters=90 total_s=10.009624 per_call_us=111218.046 checksum=0.000000
+[14:45:07] results/relu_1e7_l2_t3.txt
+RESULT kernel=relu size=10000000 iters=90 total_s=10.008216 per_call_us=111202.404 checksum=0.000000
+[14:45:19] results/relu_1e7-setup_l1_t1.txt
+RESULT kernel=relu size=10000000 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[14:45:22] results/softmax_1e3_l1_t1.txt
+RESULT kernel=softmax size=1000 iters=1200000 total_s=11.368602 per_call_us=9.474 checksum=-7.889138
+[14:45:36] results/softmax_1e3_l1_t2.txt
+RESULT kernel=softmax size=1000 iters=1200000 total_s=11.109958 per_call_us=9.258 checksum=-7.889138
+[14:45:48] results/softmax_1e3_l1_t3.txt
+RESULT kernel=softmax size=1000 iters=1200000 total_s=11.145747 per_call_us=9.288 checksum=-7.889138
+[14:46:00] results/softmax_1e3_l2_t1.txt
+RESULT kernel=softmax size=1000 iters=1200000 total_s=10.807500 per_call_us=9.006 checksum=-7.889138
+[14:46:12] results/softmax_1e3_l2_t2.txt
+RESULT kernel=softmax size=1000 iters=1200000 total_s=11.144847 per_call_us=9.287 checksum=-7.889138
+[14:46:24] results/softmax_1e3_l2_t3.txt
+RESULT kernel=softmax size=1000 iters=1200000 total_s=11.151210 per_call_us=9.293 checksum=-7.889138
+[14:46:36] results/softmax_1e3-setup_l1_t1.txt
+RESULT kernel=softmax size=1000 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[14:46:37] results/softmax_1e5_l1_t1.txt
+RESULT kernel=softmax size=100000 iters=12000 total_s=9.842627 per_call_us=820.219 checksum=-12.485563
+[14:46:50] results/softmax_1e5_l1_t2.txt
+RESULT kernel=softmax size=100000 iters=12000 total_s=9.542688 per_call_us=795.224 checksum=-12.485563
+[14:47:01] results/softmax_1e5_l1_t3.txt
+RESULT kernel=softmax size=100000 iters=12000 total_s=9.844932 per_call_us=820.411 checksum=-12.485563
+[14:47:12] results/softmax_1e5_l2_t1.txt
+RESULT kernel=softmax size=100000 iters=12000 total_s=9.710029 per_call_us=809.169 checksum=-12.485563
+[14:47:23] results/softmax_1e5_l2_t2.txt
+RESULT kernel=softmax size=100000 iters=12000 total_s=9.820465 per_call_us=818.372 checksum=-12.485563
+[14:47:34] results/softmax_1e5_l2_t3.txt
+RESULT kernel=softmax size=100000 iters=12000 total_s=9.911292 per_call_us=825.941 checksum=-12.485563
+[14:47:45] results/softmax_1e5-setup_l1_t1.txt
+RESULT kernel=softmax size=100000 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[14:47:46] results/softmax_1e7_l1_t1.txt
+RESULT kernel=softmax size=10000000 iters=100 total_s=10.350098 per_call_us=103500.979 checksum=-17.105513
+[14:47:59] results/softmax_1e7_l1_t2.txt
+RESULT kernel=softmax size=10000000 iters=100 total_s=10.297927 per_call_us=102979.270 checksum=-17.105513
+[14:48:11] results/softmax_1e7_l1_t3.txt
+RESULT kernel=softmax size=10000000 iters=100 total_s=10.373901 per_call_us=103739.010 checksum=-17.105513
+[14:48:23] results/softmax_1e7_l2_t1.txt
+RESULT kernel=softmax size=10000000 iters=100 total_s=10.374649 per_call_us=103746.494 checksum=-17.105513
+[14:48:35] results/softmax_1e7_l2_t2.txt
+RESULT kernel=softmax size=10000000 iters=100 total_s=10.311345 per_call_us=103113.453 checksum=-17.105513
+[14:48:47] results/softmax_1e7_l2_t3.txt
+RESULT kernel=softmax size=10000000 iters=100 total_s=10.324777 per_call_us=103247.771 checksum=-17.105513
+[14:48:59] results/softmax_1e7-setup_l1_t1.txt
+RESULT kernel=softmax size=10000000 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[14:49:00] results/linear_256_l1_t1.txt
+RESULT kernel=linear size=256 iters=50000 total_s=9.942505 per_call_us=198.850 checksum=-13.469434
+[14:49:12] results/linear_256_l1_t2.txt
+RESULT kernel=linear size=256 iters=50000 total_s=9.939564 per_call_us=198.791 checksum=-13.469434
+[14:49:23] results/linear_256_l1_t3.txt
+RESULT kernel=linear size=256 iters=50000 total_s=9.931487 per_call_us=198.630 checksum=-13.469434
+[14:49:34] results/linear_256_l2_t1.txt
+RESULT kernel=linear size=256 iters=50000 total_s=9.929521 per_call_us=198.590 checksum=-13.469434
+[14:49:45] results/linear_256_l2_t2.txt
+RESULT kernel=linear size=256 iters=50000 total_s=9.949451 per_call_us=198.989 checksum=-13.469434
+[14:49:56] results/linear_256_l2_t3.txt
+RESULT kernel=linear size=256 iters=50000 total_s=9.945831 per_call_us=198.917 checksum=-13.469434
+[14:50:07] results/linear_256-setup_l1_t1.txt
+RESULT kernel=linear size=256 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[14:50:08] results/linear_1024_l1_t1.txt
+RESULT kernel=linear size=1024 iters=3000 total_s=9.768306 per_call_us=3256.102 checksum=0.509962
+[14:50:21] results/linear_1024_l1_t2.txt
+RESULT kernel=linear size=1024 iters=3000 total_s=9.769685 per_call_us=3256.562 checksum=0.509962
+[14:50:32] results/linear_1024_l1_t3.txt
+RESULT kernel=linear size=1024 iters=3000 total_s=9.767963 per_call_us=3255.988 checksum=0.509962
+[14:50:43] results/linear_1024_l2_t1.txt
+RESULT kernel=linear size=1024 iters=3000 total_s=9.765950 per_call_us=3255.317 checksum=0.509962
+[14:50:54] results/linear_1024_l2_t2.txt
+RESULT kernel=linear size=1024 iters=3000 total_s=9.767483 per_call_us=3255.828 checksum=0.509962
+[14:51:05] results/linear_1024_l2_t3.txt
+RESULT kernel=linear size=1024 iters=3000 total_s=9.768764 per_call_us=3256.255 checksum=0.509962
+[14:51:16] results/linear_1024-setup_l1_t1.txt
+RESULT kernel=linear size=1024 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[14:51:17] results/linear_4096_l1_t1.txt
+RESULT kernel=linear size=4096 iters=200 total_s=10.446328 per_call_us=52231.639 checksum=7.907066
+[14:51:29] results/linear_4096_l1_t2.txt
+RESULT kernel=linear size=4096 iters=200 total_s=10.444790 per_call_us=52223.949 checksum=7.907066
+[14:51:41] results/linear_4096_l1_t3.txt
+RESULT kernel=linear size=4096 iters=200 total_s=10.441466 per_call_us=52207.329 checksum=7.907066
+[14:51:53] results/linear_4096_l2_t1.txt
+RESULT kernel=linear size=4096 iters=200 total_s=10.458691 per_call_us=52293.457 checksum=7.907066
+[14:52:05] results/linear_4096_l2_t2.txt
+RESULT kernel=linear size=4096 iters=200 total_s=10.444414 per_call_us=52222.068 checksum=7.907066
+[14:52:17] results/linear_4096_l2_t3.txt
+RESULT kernel=linear size=4096 iters=200 total_s=10.446795 per_call_us=52233.977 checksum=7.907066
+[14:52:29] results/linear_4096-setup_l1_t1.txt
+RESULT kernel=linear size=4096 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[14:52:30] results/matmul_64_l1_t1.txt
+RESULT kernel=matmul size=64 iters=12500 total_s=9.949535 per_call_us=795.963 checksum=6.044059
+[14:52:42] results/matmul_64_l1_t2.txt
+RESULT kernel=matmul size=64 iters=12500 total_s=9.945199 per_call_us=795.616 checksum=6.044059
+[14:52:53] results/matmul_64_l1_t3.txt
+RESULT kernel=matmul size=64 iters=12500 total_s=9.942539 per_call_us=795.403 checksum=6.044059
+[14:53:04] results/matmul_64_l2_t1.txt
+RESULT kernel=matmul size=64 iters=12500 total_s=9.943960 per_call_us=795.517 checksum=6.044059
+[14:53:15] results/matmul_64_l2_t2.txt
+RESULT kernel=matmul size=64 iters=12500 total_s=9.945504 per_call_us=795.640 checksum=6.044059
+[14:53:26] results/matmul_64_l2_t3.txt
+RESULT kernel=matmul size=64 iters=12500 total_s=9.949055 per_call_us=795.924 checksum=6.044059
+[14:53:37] results/matmul_64-setup_l1_t1.txt
+RESULT kernel=matmul size=64 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[14:53:38] results/matmul_256_l1_t1.txt
+RESULT kernel=matmul size=256 iters=200 total_s=10.458088 per_call_us=52290.440 checksum=-3.034754
+[14:53:51] results/matmul_256_l1_t2.txt
+RESULT kernel=matmul size=256 iters=200 total_s=10.459137 per_call_us=52295.685 checksum=-3.034754
+[14:54:03] results/matmul_256_l1_t3.txt
+RESULT kernel=matmul size=256 iters=200 total_s=10.448665 per_call_us=52243.326 checksum=-3.034754
+[14:54:15] results/matmul_256_l2_t1.txt
+RESULT kernel=matmul size=256 iters=200 total_s=10.449020 per_call_us=52245.101 checksum=-3.034754
+[14:54:27] results/matmul_256_l2_t2.txt
+RESULT kernel=matmul size=256 iters=200 total_s=10.450465 per_call_us=52252.323 checksum=-3.034754
+[14:54:39] results/matmul_256_l2_t3.txt
+RESULT kernel=matmul size=256 iters=200 total_s=10.450655 per_call_us=52253.275 checksum=-3.034754
+[14:54:51] results/matmul_256-setup_l1_t1.txt
+RESULT kernel=matmul size=256 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[14:54:52] results/matmul_1024_l1_t1.txt
+RESULT kernel=matmul size=1024 iters=3 total_s=10.856942 per_call_us=3618980.711 checksum=7.467091
+[14:55:06] results/matmul_1024_l1_t2.txt
+RESULT kernel=matmul size=1024 iters=3 total_s=10.864342 per_call_us=3621447.448 checksum=7.467091
+[14:55:18] results/matmul_1024_l1_t3.txt
+RESULT kernel=matmul size=1024 iters=3 total_s=10.849424 per_call_us=3616474.743 checksum=7.467091
+[14:55:33] results/matmul_1024_l2_t1.txt
+RESULT kernel=matmul size=1024 iters=3 total_s=10.850648 per_call_us=3616882.580 checksum=7.467091
+[14:55:45] results/matmul_1024_l2_t2.txt
+RESULT kernel=matmul size=1024 iters=3 total_s=10.846842 per_call_us=3615613.975 checksum=7.467091
+[14:55:57] results/matmul_1024_l2_t3.txt
+RESULT kernel=matmul size=1024 iters=3 total_s=10.853064 per_call_us=3617687.879 checksum=7.467091
+[14:56:09] results/matmul_1024-setup_l1_t1.txt
+RESULT kernel=matmul size=1024 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[14:56:10] results/conv_28c1f32k3_l1_t1.txt
+RESULT kernel=conv size=28 iters=8000 total_s=9.798935 per_call_us=1224.867 checksum=0.841295
+[14:56:22] results/conv_28c1f32k3_l1_t2.txt
+RESULT kernel=conv size=28 iters=8000 total_s=9.818717 per_call_us=1227.340 checksum=0.841295
+[14:56:33] results/conv_28c1f32k3_l1_t3.txt
+RESULT kernel=conv size=28 iters=8000 total_s=9.829683 per_call_us=1228.710 checksum=0.841295
+[14:56:44] results/conv_28c1f32k3_l2_t1.txt
+RESULT kernel=conv size=28 iters=8000 total_s=9.817121 per_call_us=1227.140 checksum=0.841295
+[14:56:55] results/conv_28c1f32k3_l2_t2.txt
+RESULT kernel=conv size=28 iters=8000 total_s=9.826114 per_call_us=1228.264 checksum=0.841295
+[14:57:06] results/conv_28c1f32k3_l2_t3.txt
+RESULT kernel=conv size=28 iters=8000 total_s=9.829717 per_call_us=1228.715 checksum=0.841295
+[14:57:17] results/conv_28c1f32k3-setup_l1_t1.txt
+RESULT kernel=conv size=28 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[14:57:18] results/conv_64c3f16k3_l1_t1.txt
+RESULT kernel=conv size=64 iters=1200 total_s=10.312613 per_call_us=8593.844 checksum=0.000000
+[14:57:31] results/conv_64c3f16k3_l1_t2.txt
+RESULT kernel=conv size=64 iters=1200 total_s=10.311276 per_call_us=8592.730 checksum=0.000000
+[14:57:42] results/conv_64c3f16k3_l1_t3.txt
+RESULT kernel=conv size=64 iters=1200 total_s=10.310957 per_call_us=8592.464 checksum=0.000000
+[14:57:53] results/conv_64c3f16k3_l2_t1.txt
+RESULT kernel=conv size=64 iters=1200 total_s=10.312426 per_call_us=8593.689 checksum=0.000000
+[14:58:04] results/conv_64c3f16k3_l2_t2.txt
+RESULT kernel=conv size=64 iters=1200 total_s=10.307778 per_call_us=8589.815 checksum=0.000000
+[14:58:16] results/conv_64c3f16k3_l2_t3.txt
+RESULT kernel=conv size=64 iters=1200 total_s=10.309612 per_call_us=8591.344 checksum=0.000000
+[14:58:29] results/conv_64c3f16k3-setup_l1_t1.txt
+RESULT kernel=conv size=64 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[14:58:30] results/conv_224c3f64k5_l1_t1.txt
+RESULT kernel=conv size=224 iters=10 total_s=10.811397 per_call_us=1081139.737 checksum=0.472795
+[14:58:43] results/conv_224c3f64k5_l1_t2.txt
+RESULT kernel=conv size=224 iters=10 total_s=10.810799 per_call_us=1081079.857 checksum=0.472795
+[14:58:55] results/conv_224c3f64k5_l1_t3.txt
+RESULT kernel=conv size=224 iters=10 total_s=10.811574 per_call_us=1081157.383 checksum=0.472795
+[14:59:07] results/conv_224c3f64k5_l2_t1.txt
+RESULT kernel=conv size=224 iters=10 total_s=10.810592 per_call_us=1081059.191 checksum=0.472795
+[14:59:19] results/conv_224c3f64k5_l2_t2.txt
+RESULT kernel=conv size=224 iters=10 total_s=10.810122 per_call_us=1081012.173 checksum=0.472795
+[14:59:32] results/conv_224c3f64k5_l2_t3.txt
+RESULT kernel=conv size=224 iters=10 total_s=10.811143 per_call_us=1081114.343 checksum=0.472795
+[14:59:44] results/conv_224c3f64k5-setup_l1_t1.txt
+RESULT kernel=conv size=224 iters=0 total_s=0.000000 per_call_us=0.000 checksum=0.000000
+[14:59:45] done; now run: python3 perf/summarize.py

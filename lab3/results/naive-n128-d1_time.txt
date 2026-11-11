@@ -1,0 +1,5 @@
+PINNED cpu=0 allowed=0 core=S0-C0 smt_siblings=0
+RESULT kernel=matmul size=128 density=0.01 nnz=166 iters=867 total_s=5.609788 per_call_us=6470.344 csr_build_us=0.000 checksum=0.000000
+real 5.61
+user 5.61
+sys 0.00

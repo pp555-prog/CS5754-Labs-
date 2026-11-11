@@ -1,0 +1,51 @@
+srun: job 487621 queued and waiting for resources
+srun: job 487621 has been allocated resources
+PINNED cpu=2 allowed=2 core=S0-C10 smt_siblings=2
+Consider disabling nmi watchdog to minimize multiplexing
+(echo 0 | sudo tee /proc/sys/kernel/nmi_watchdog or
+ echo kernel.nmi_watchdog=0 >> /etc/sysctl.conf ; sysctl -p as root)
+RESULT kernel=matmul_blocking size=1536 iters=1 total_s=6.281542 per_call_us=6281541.984 checksum=-20.414433
+# 4.8-full-perf on INTEL(R) XEON(R) SILVER 4514Y [spr/sapphire_rapids]
+FE               Frontend_Bound                                        % Slots                        3.8  < [ 8.0%]
+BAD              Bad_Speculation.Branch_Mispredicts.Other_Mispredicts  % Slots                        0.1  < [ 8.0%]
+BAD              Bad_Speculation.Machine_Clears.Other_Nukes            % Slots                        0.0  < [ 8.0%]
+BE/Core          Backend_Bound.Core_Bound.Serializing_Operation        % Clocks                       0.2  < [ 8.0%]
+BAD              Bad_Speculation                                       % Slots                        1.6  < [ 8.0%]
+BE               Backend_Bound                                         % Slots                       20.8    [24.0%]
+RET              Retiring                                              % Slots                       73.8    [24.0%]
+FE               Frontend_Bound.Fetch_Latency                          % Slots                        2.3  < [16.0%]
+FE               Frontend_Bound.Fetch_Bandwidth                        % Slots                        1.5  < [16.0%]
+BAD              Bad_Speculation.Branch_Mispredicts                    % Slots                        1.2  < [24.0%]
+BAD              Bad_Speculation.Machine_Clears                        % Slots                        0.4  < [ 8.0%]
+BE/Mem           Backend_Bound.Memory_Bound                            % Slots                        7.3  < [24.0%]
+BE/Core          Backend_Bound.Core_Bound                              % Slots                       13.5    [24.0%]
+RET              Retiring.Light_Operations                             % Slots                       65.3    [24.0%]
+RET              Retiring.Heavy_Operations                             % Slots                        8.5  < [24.0%]
+FE               Frontend_Bound.Fetch_Latency.ICache_Misses            % Clocks                       0.0  < [16.0%]
+FE               Frontend_Bound.Fetch_Latency.ITLB_Misses              % Clocks                       0.0  < [16.0%]
+FE               Frontend_Bound.Fetch_Latency.Branch_Resteers          % Clocks                       0.3  < [ 8.0%]
+FE               Frontend_Bound.Fetch_Latency.MS_Switches              % Clocks_est                   0.6  < [ 8.0%]
+FE               Frontend_Bound.Fetch_Latency.LCP                      % Clocks                       0.0  < [16.0%]
+FE               Frontend_Bound.Fetch_Latency.DSB_Switches             % Clocks                       0.1  < [ 8.0%]
+FE               Frontend_Bound.Fetch_Bandwidth.MITE                   % Slots_est                    0.1  < [ 8.0%]
+FE               Frontend_Bound.Fetch_Bandwidth.DSB                    % Slots_est                    5.9  < [ 8.0%]
+BE/Mem           Backend_Bound.Memory_Bound.L1_Bound                   % Stalls                       1.5  < [ 8.0%]
+BE/Mem           Backend_Bound.Memory_Bound.L2_Bound                   % Stalls                       0.0  < [ 8.0%]
+BE/Mem           Backend_Bound.Memory_Bound.L3_Bound                   % Stalls                       0.0  < [ 8.0%]
+BE/Mem           Backend_Bound.Memory_Bound.DRAM_Bound                 % Stalls                       0.1  < [ 8.0%]
+BE/Mem           Backend_Bound.Memory_Bound.PMM_Bound                  % Stalls                       0.0  <
+BE/Mem           Backend_Bound.Memory_Bound.Store_Bound                % Stalls                       0.0  < [ 8.0%]
+BE/Core          Backend_Bound.Core_Bound.Divider                      % Clocks                       0.2  < [ 8.0%]
+BE/Core          Backend_Bound.Core_Bound.AMX_Busy                     % Core_Clocks                  0.0  < [ 8.0%]
+BE/Core          Backend_Bound.Core_Bound.Ports_Utilization            % Clocks                       4.9  < [ 8.0%]
+RET              Retiring.Light_Operations.FP_Arith                    % Uops                         9.9  < [ 8.0%]
+RET              Retiring.Light_Operations.Int_Operations              % Uops                         0.0  < [ 8.0%]
+RET              Retiring.Light_Operations.Memory_Operations           % Slots                       46.2    [16.0%]<==
+RET              Retiring.Light_Operations.Fused_Instructions          % Slots                        3.3  < [16.0%]
+RET              Retiring.Light_Operations.Non_Fused_Branches          % Slots                        0.1  < [16.0%]
+RET              Retiring.Light_Operations.Other_Light_Ops             % Slots                        5.8  < [ 8.0%]
+RET              Retiring.Heavy_Operations.Few_Uops_Instructions       % Slots                        8.4  < [16.0%]
+RET              Retiring.Heavy_Operations.Microcode_Sequencer         % Slots                        0.1  < [16.0%]
+MUX                                                                    %                              8.00  
+Run toplev --describe Memory_Operations^ to get more information on bottleneck
+Add --run-sample to find locations

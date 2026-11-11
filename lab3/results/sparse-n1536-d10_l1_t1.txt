@@ -1,0 +1,16 @@
+srun: job 489397 queued and waiting for resources
+srun: job 489397 has been allocated resources
+PINNED cpu=0 allowed=0 core=S0-C0 smt_siblings=0
+Consider disabling nmi watchdog to minimize multiplexing
+(echo 0 | sudo tee /proc/sys/kernel/nmi_watchdog or
+ echo kernel.nmi_watchdog=0 >> /etc/sysctl.conf ; sysctl -p as root)
+RESULT kernel=matmul_sparse size=1536 density=0.1 nnz=236032 iters=9 total_s=6.438652 per_call_us=715405.822 csr_build_us=16883.251 checksum=-30.905518
+# 4.8-full-perf on INTEL(R) XEON(R) SILVER 4514Y [spr/sapphire_rapids]
+FE               Frontend_Bound   % Slots                        1.2  <
+BAD              Bad_Speculation  % Slots                        1.6  <
+BE               Backend_Bound    % Slots                       20.7   
+RET              Retiring         % Slots                       76.6   <==
+MUX                               %                            100.00  
+Run toplev --describe Retiring^ to get more information on bottleneck
+Add --run-sample to find locations
+Add --nodes '!+Retiring*/2,+MUX' for breakdown.

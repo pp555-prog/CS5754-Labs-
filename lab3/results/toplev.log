@@ -1,0 +1,218 @@
+nohup: ignoring input
+[22:19:40] results/naive-n128-d1_time.txt
+RESULT kernel=matmul size=128 density=0.01 nnz=166 iters=867 total_s=5.609788 per_call_us=6470.344 csr_build_us=0.000 checksum=0.000000
+real 5.61
+[22:19:47] results/naive-n128-d1_l1_t1.txt
+RESULT kernel=matmul size=128 density=0.01 nnz=166 iters=867 total_s=5.608590 per_call_us=6468.962 csr_build_us=0.000 checksum=0.000000
+[22:19:54] results/naive-n128-d1_l2_t1.txt
+RESULT kernel=matmul size=128 density=0.01 nnz=166 iters=867 total_s=5.612272 per_call_us=6473.209 csr_build_us=0.000 checksum=0.000000
+[22:20:01] results/naive-n128-d1-setup_l1_t1.txt
+RESULT kernel=matmul size=128 density=0.01 nnz=166 iters=0 total_s=0.000000 per_call_us=0.000 csr_build_us=0.000 checksum=0.000000
+[22:20:02] results/sparse-n128-d1_time.txt
+RESULT kernel=matmul_sparse size=128 density=0.01 nnz=166 iters=110839 total_s=7.996096 per_call_us=72.142 csr_build_us=127.684 checksum=0.000000
+real 8.00
+[22:20:12] results/sparse-n128-d1_l1_t1.txt
+RESULT kernel=matmul_sparse size=128 density=0.01 nnz=166 iters=110839 total_s=7.935781 per_call_us=71.597 csr_build_us=114.685 checksum=0.000000
+[22:20:21] results/sparse-n128-d1_l2_t1.txt
+RESULT kernel=matmul_sparse size=128 density=0.01 nnz=166 iters=110839 total_s=7.933954 per_call_us=71.581 csr_build_us=92.196 checksum=0.000000
+[22:20:30] results/sparse-n128-d1-setup_l1_t1.txt
+RESULT kernel=matmul_sparse size=128 density=0.01 nnz=166 iters=0 total_s=0.000000 per_call_us=0.000 csr_build_us=95.233 checksum=0.000000
+[22:20:31] results/naive-n128-d10_time.txt
+RESULT kernel=matmul size=128 density=0.1 nnz=1633 iters=867 total_s=5.608537 per_call_us=6468.901 csr_build_us=0.000 checksum=1565.750488
+real 5.61
+[22:20:38] results/naive-n128-d10_l1_t1.txt
+RESULT kernel=matmul size=128 density=0.1 nnz=1633 iters=867 total_s=5.607778 per_call_us=6468.026 csr_build_us=0.000 checksum=1565.750488
+[22:20:46] results/naive-n128-d10_l2_t1.txt
+RESULT kernel=matmul size=128 density=0.1 nnz=1633 iters=867 total_s=5.608000 per_call_us=6468.281 csr_build_us=0.000 checksum=1565.750488
+[22:20:53] results/naive-n128-d10-setup_l1_t1.txt
+RESULT kernel=matmul size=128 density=0.1 nnz=1633 iters=0 total_s=0.000000 per_call_us=0.000 csr_build_us=0.000 checksum=0.000000
+[22:20:54] results/sparse-n128-d10_time.txt
+RESULT kernel=matmul_sparse size=128 density=0.1 nnz=1633 iters=15233 total_s=10.104805 per_call_us=663.350 csr_build_us=125.068 checksum=27513.384766
+real 10.11
+[22:21:06] results/sparse-n128-d10_l1_t1.txt
+RESULT kernel=matmul_sparse size=128 density=0.1 nnz=1633 iters=15233 total_s=10.130254 per_call_us=665.020 csr_build_us=126.805 checksum=27513.384766
+[22:21:18] results/sparse-n128-d10_l2_t1.txt
+RESULT kernel=matmul_sparse size=128 density=0.1 nnz=1633 iters=15233 total_s=10.129402 per_call_us=664.964 csr_build_us=124.998 checksum=27513.384766
+[22:21:28] results/sparse-n128-d10-setup_l1_t1.txt
+RESULT kernel=matmul_sparse size=128 density=0.1 nnz=1633 iters=0 total_s=0.000000 per_call_us=0.000 csr_build_us=130.334 checksum=0.000000
+[22:21:29] results/naive-n128-d50_time.txt
+RESULT kernel=matmul size=128 density=0.5 nnz=8183 iters=867 total_s=5.608543 per_call_us=6468.907 csr_build_us=0.000 checksum=134.138580
+real 5.61
+[22:21:36] results/naive-n128-d50_l1_t1.txt
+RESULT kernel=matmul size=128 density=0.5 nnz=8183 iters=867 total_s=5.609299 per_call_us=6469.780 csr_build_us=0.000 checksum=134.138580
+[22:21:43] results/naive-n128-d50_l2_t1.txt
+RESULT kernel=matmul size=128 density=0.5 nnz=8183 iters=867 total_s=5.609541 per_call_us=6470.059 csr_build_us=0.000 checksum=134.138580
+[22:21:50] results/naive-n128-d50-setup_l1_t1.txt
+RESULT kernel=matmul size=128 density=0.5 nnz=8183 iters=0 total_s=0.000000 per_call_us=0.000 csr_build_us=0.000 checksum=0.000000
+[22:21:54] results/sparse-n128-d50_time.txt
+RESULT kernel=matmul_sparse size=128 density=0.5 nnz=8183 iters=3152 total_s=10.391861 per_call_us=3296.910 csr_build_us=402.210 checksum=487.671173
+real 10.40
+[22:22:05] results/sparse-n128-d50_l1_t1.txt
+RESULT kernel=matmul_sparse size=128 density=0.5 nnz=8183 iters=3152 total_s=10.411956 per_call_us=3303.286 csr_build_us=358.373 checksum=487.671173
+[22:22:16] results/sparse-n128-d50_l2_t1.txt
+RESULT kernel=matmul_sparse size=128 density=0.5 nnz=8183 iters=3152 total_s=10.393567 per_call_us=3297.452 csr_build_us=358.954 checksum=487.671173
+[22:22:27] results/sparse-n128-d50-setup_l1_t1.txt
+RESULT kernel=matmul_sparse size=128 density=0.5 nnz=8183 iters=0 total_s=0.000000 per_call_us=0.000 csr_build_us=357.602 checksum=0.000000
+[22:22:41] results/naive-n128-d100_time.txt
+RESULT kernel=matmul size=128 density=1 nnz=16384 iters=867 total_s=5.608964 per_call_us=6469.393 csr_build_us=0.000 checksum=467.109436
+real 5.61
+[22:22:47] results/naive-n128-d100_l1_t1.txt
+RESULT kernel=matmul size=128 density=1 nnz=16384 iters=867 total_s=5.608476 per_call_us=6468.831 csr_build_us=0.000 checksum=467.109436
+[22:22:54] results/naive-n128-d100_l2_t1.txt
+RESULT kernel=matmul size=128 density=1 nnz=16384 iters=867 total_s=5.607722 per_call_us=6467.961 csr_build_us=0.000 checksum=467.109436
+[22:23:01] results/naive-n128-d100-setup_l1_t1.txt
+RESULT kernel=matmul size=128 density=1 nnz=16384 iters=0 total_s=0.000000 per_call_us=0.000 csr_build_us=0.000 checksum=0.000000
+[22:23:02] results/sparse-n128-d100_time.txt
+RESULT kernel=matmul_sparse size=128 density=1 nnz=16384 iters=1583 total_s=10.411330 per_call_us=6576.962 csr_build_us=158.305 checksum=852.859680
+real 10.41
+[22:23:15] results/sparse-n128-d100_l1_t1.txt
+RESULT kernel=matmul_sparse size=128 density=1 nnz=16384 iters=1583 total_s=10.402818 per_call_us=6571.585 csr_build_us=159.111 checksum=852.859680
+[22:23:27] results/sparse-n128-d100_l2_t1.txt
+RESULT kernel=matmul_sparse size=128 density=1 nnz=16384 iters=1583 total_s=10.373916 per_call_us=6553.327 csr_build_us=170.507 checksum=852.859680
+[22:23:51] results/sparse-n128-d100-setup_l1_t1.txt
+RESULT kernel=matmul_sparse size=128 density=1 nnz=16384 iters=0 total_s=0.000000 per_call_us=0.000 csr_build_us=163.149 checksum=0.000000
+[22:23:52] results/naive-n512-d1_time.txt
+RESULT kernel=matmul size=512 density=0.01 nnz=2658 iters=14 total_s=5.853720 per_call_us=418122.860 csr_build_us=0.000 checksum=23.194370
+real 5.88
+[22:24:00] results/naive-n512-d1_l1_t1.txt
+RESULT kernel=matmul size=512 density=0.01 nnz=2658 iters=14 total_s=5.846903 per_call_us=417635.917 csr_build_us=0.000 checksum=23.194370
+[22:24:07] results/naive-n512-d1_l2_t1.txt
+RESULT kernel=matmul size=512 density=0.01 nnz=2658 iters=14 total_s=5.900193 per_call_us=421442.332 csr_build_us=0.000 checksum=23.194370
+[22:24:14] results/naive-n512-d1-setup_l1_t1.txt
+RESULT kernel=matmul size=512 density=0.01 nnz=2658 iters=0 total_s=0.000000 per_call_us=0.000 csr_build_us=0.000 checksum=0.000000
+[22:24:17] results/sparse-n512-d1_time.txt
+RESULT kernel=matmul_sparse size=512 density=0.01 nnz=2658 iters=2240 total_s=7.326194 per_call_us=3270.622 csr_build_us=1300.407 checksum=3711.093994
+real 7.35
+[22:24:27] results/sparse-n512-d1_l1_t1.txt
+RESULT kernel=matmul_sparse size=512 density=0.01 nnz=2658 iters=2240 total_s=7.325622 per_call_us=3270.367 csr_build_us=1317.403 checksum=3711.093994
+[22:24:35] results/sparse-n512-d1_l2_t1.txt
+RESULT kernel=matmul_sparse size=512 density=0.01 nnz=2658 iters=2240 total_s=7.330790 per_call_us=3272.674 csr_build_us=1308.446 checksum=3711.093994
+[22:24:44] results/sparse-n512-d1-setup_l1_t1.txt
+RESULT kernel=matmul_sparse size=512 density=0.01 nnz=2658 iters=0 total_s=0.000000 per_call_us=0.000 csr_build_us=1292.428 checksum=0.000000
+[22:24:45] results/naive-n512-d10_time.txt
+RESULT kernel=matmul size=512 density=0.1 nnz=26272 iters=14 total_s=5.845705 per_call_us=417550.367 csr_build_us=0.000 checksum=30.653727
+real 5.87
+[22:24:54] results/naive-n512-d10_l1_t1.txt
+RESULT kernel=matmul size=512 density=0.1 nnz=26272 iters=14 total_s=5.845365 per_call_us=417526.073 csr_build_us=0.000 checksum=30.653727
+[22:25:01] results/naive-n512-d10_l2_t1.txt
+RESULT kernel=matmul size=512 density=0.1 nnz=26272 iters=14 total_s=5.846454 per_call_us=417603.872 csr_build_us=0.000 checksum=30.653727
+[22:25:08] results/naive-n512-d10-setup_l1_t1.txt
+RESULT kernel=matmul size=512 density=0.1 nnz=26272 iters=0 total_s=0.000000 per_call_us=0.000 csr_build_us=0.000 checksum=0.000000
+[22:25:09] results/sparse-n512-d10_time.txt
+RESULT kernel=matmul_sparse size=512 density=0.1 nnz=26272 iters=246 total_s=7.152396 per_call_us=29074.781 csr_build_us=1879.599 checksum=538.628845
+real 7.18
+[22:25:18] results/sparse-n512-d10_l1_t1.txt
+RESULT kernel=matmul_sparse size=512 density=0.1 nnz=26272 iters=246 total_s=6.868162 per_call_us=27919.357 csr_build_us=1932.354 checksum=538.628845
+[22:25:26] results/sparse-n512-d10_l2_t1.txt
+RESULT kernel=matmul_sparse size=512 density=0.1 nnz=26272 iters=246 total_s=6.880012 per_call_us=27967.528 csr_build_us=1871.962 checksum=538.628845
+[22:25:34] results/sparse-n512-d10-setup_l1_t1.txt
+RESULT kernel=matmul_sparse size=512 density=0.1 nnz=26272 iters=0 total_s=0.000000 per_call_us=0.000 csr_build_us=1887.739 checksum=0.000000
+[22:25:35] results/naive-n512-d50_time.txt
+RESULT kernel=matmul size=512 density=0.5 nnz=130982 iters=14 total_s=5.844975 per_call_us=417498.183 csr_build_us=0.000 checksum=10.782477
+real 5.87
+[22:25:44] results/naive-n512-d50_l1_t1.txt
+RESULT kernel=matmul size=512 density=0.5 nnz=130982 iters=14 total_s=5.845833 per_call_us=417559.483 csr_build_us=0.000 checksum=10.782477
+[22:25:51] results/naive-n512-d50_l2_t1.txt
+RESULT kernel=matmul size=512 density=0.5 nnz=130982 iters=14 total_s=5.846383 per_call_us=417598.755 csr_build_us=0.000 checksum=10.782477
+[22:25:58] results/naive-n512-d50-setup_l1_t1.txt
+RESULT kernel=matmul size=512 density=0.5 nnz=130982 iters=0 total_s=0.000000 per_call_us=0.000 csr_build_us=0.000 checksum=0.000000
+[22:25:59] results/sparse-n512-d50_time.txt
+RESULT kernel=matmul_sparse size=512 density=0.5 nnz=130982 iters=50 total_s=7.128983 per_call_us=142579.663 csr_build_us=5657.363 checksum=38.508858
+real 7.16
+[22:26:08] results/sparse-n512-d50_l1_t1.txt
+RESULT kernel=matmul_sparse size=512 density=0.5 nnz=130982 iters=50 total_s=7.005649 per_call_us=140112.975 csr_build_us=5734.239 checksum=38.508858
+[22:26:16] results/sparse-n512-d50_l2_t1.txt
+RESULT kernel=matmul_sparse size=512 density=0.5 nnz=130982 iters=50 total_s=7.399361 per_call_us=147987.212 csr_build_us=5661.001 checksum=38.508858
+[22:26:25] results/sparse-n512-d50-setup_l1_t1.txt
+RESULT kernel=matmul_sparse size=512 density=0.5 nnz=130982 iters=0 total_s=0.000000 per_call_us=0.000 csr_build_us=5736.675 checksum=0.000000
+[22:26:26] results/naive-n512-d100_time.txt
+RESULT kernel=matmul size=512 density=1 nnz=262144 iters=14 total_s=5.845616 per_call_us=417544.021 csr_build_us=0.000 checksum=-2.210814
+real 5.88
+[22:26:34] results/naive-n512-d100_l1_t1.txt
+RESULT kernel=matmul size=512 density=1 nnz=262144 iters=14 total_s=5.851366 per_call_us=417954.709 csr_build_us=0.000 checksum=-2.210814
+[22:26:41] results/naive-n512-d100_l2_t1.txt
+RESULT kernel=matmul size=512 density=1 nnz=262144 iters=14 total_s=5.845102 per_call_us=417507.301 csr_build_us=0.000 checksum=-2.210814
+[22:26:48] results/naive-n512-d100-setup_l1_t1.txt
+RESULT kernel=matmul size=512 density=1 nnz=262144 iters=0 total_s=0.000000 per_call_us=0.000 csr_build_us=0.000 checksum=0.000000
+[22:26:49] results/sparse-n512-d100_time.txt
+RESULT kernel=matmul_sparse size=512 density=1 nnz=262144 iters=25 total_s=7.355620 per_call_us=294224.792 csr_build_us=2352.855 checksum=-3.947883
+real 7.38
+[22:26:59] results/sparse-n512-d100_l1_t1.txt
+RESULT kernel=matmul_sparse size=512 density=1 nnz=262144 iters=25 total_s=7.282300 per_call_us=291292.002 csr_build_us=2284.076 checksum=-3.947883
+[22:27:07] results/sparse-n512-d100_l2_t1.txt
+RESULT kernel=matmul_sparse size=512 density=1 nnz=262144 iters=25 total_s=7.330091 per_call_us=293203.630 csr_build_us=2285.829 checksum=-3.947883
+[22:27:15] results/sparse-n512-d100-setup_l1_t1.txt
+RESULT kernel=matmul_sparse size=512 density=1 nnz=262144 iters=0 total_s=0.000000 per_call_us=0.000 csr_build_us=2231.211 checksum=0.000000
+[22:27:17] results/naive-n1536-d1_time.txt
+RESULT kernel=matmul size=1536 density=0.01 nnz=23745 iters=1 total_s=12.173934 per_call_us=12173934.469 csr_build_us=0.000 checksum=-1.460311
+real 12.38
+[22:27:33] results/naive-n1536-d1_l1_t1.txt
+RESULT kernel=matmul size=1536 density=0.01 nnz=23745 iters=1 total_s=12.170427 per_call_us=12170427.013 csr_build_us=0.000 checksum=-1.460311
+[22:27:46] results/naive-n1536-d1_l2_t1.txt
+RESULT kernel=matmul size=1536 density=0.01 nnz=23745 iters=1 total_s=12.169309 per_call_us=12169309.432 csr_build_us=0.000 checksum=-1.460311
+[22:27:59] results/naive-n1536-d1-setup_l1_t1.txt
+RESULT kernel=matmul size=1536 density=0.01 nnz=23745 iters=0 total_s=0.000000 per_call_us=0.000 csr_build_us=0.000 checksum=0.000000
+[22:28:00] results/sparse-n1536-d1_time.txt
+RESULT kernel=matmul_sparse size=1536 density=0.01 nnz=23745 iters=89 total_s=6.270437 per_call_us=70454.347 csr_build_us=10546.417 checksum=-129.967743
+real 6.48
+[22:28:08] results/sparse-n1536-d1_l1_t1.txt
+RESULT kernel=matmul_sparse size=1536 density=0.01 nnz=23745 iters=89 total_s=6.366473 per_call_us=71533.406 csr_build_us=10761.570 checksum=-129.967743
+[22:28:16] results/sparse-n1536-d1_l2_t1.txt
+RESULT kernel=matmul_sparse size=1536 density=0.01 nnz=23745 iters=89 total_s=6.234791 per_call_us=70053.833 csr_build_us=10625.962 checksum=-129.967743
+[22:28:24] results/sparse-n1536-d1-setup_l1_t1.txt
+RESULT kernel=matmul_sparse size=1536 density=0.01 nnz=23745 iters=0 total_s=0.000000 per_call_us=0.000 csr_build_us=10620.725 checksum=0.000000
+[22:28:25] results/naive-n1536-d10_time.txt
+RESULT kernel=matmul size=1536 density=0.1 nnz=236032 iters=1 total_s=12.174596 per_call_us=12174595.798 csr_build_us=0.000 checksum=-3.433946
+real 12.38
+[22:28:39] results/naive-n1536-d10_l1_t1.txt
+RESULT kernel=matmul size=1536 density=0.1 nnz=236032 iters=1 total_s=12.165168 per_call_us=12165168.181 csr_build_us=0.000 checksum=-3.433946
+[22:28:53] results/naive-n1536-d10_l2_t1.txt
+RESULT kernel=matmul size=1536 density=0.1 nnz=236032 iters=1 total_s=12.179238 per_call_us=12179238.137 csr_build_us=0.000 checksum=-3.433946
+[22:29:06] results/naive-n1536-d10-setup_l1_t1.txt
+RESULT kernel=matmul size=1536 density=0.1 nnz=236032 iters=0 total_s=0.000000 per_call_us=0.000 csr_build_us=0.000 checksum=0.000000
+[22:29:11] results/sparse-n1536-d10_time.txt
+RESULT kernel=matmul_sparse size=1536 density=0.1 nnz=236032 iters=9 total_s=6.681098 per_call_us=742344.167 csr_build_us=16884.876 checksum=-30.905518
+real 6.90
+[22:29:19] results/sparse-n1536-d10_l1_t1.txt
+RESULT kernel=matmul_sparse size=1536 density=0.1 nnz=236032 iters=9 total_s=6.438652 per_call_us=715405.822 csr_build_us=16883.251 checksum=-30.905518
+[22:29:27] results/sparse-n1536-d10_l2_t1.txt
+RESULT kernel=matmul_sparse size=1536 density=0.1 nnz=236032 iters=9 total_s=6.294658 per_call_us=699406.462 csr_build_us=16915.922 checksum=-30.905518
+[22:29:35] results/sparse-n1536-d10-setup_l1_t1.txt
+RESULT kernel=matmul_sparse size=1536 density=0.1 nnz=236032 iters=0 total_s=0.000000 per_call_us=0.000 csr_build_us=16842.945 checksum=0.000000
+[22:29:36] results/naive-n1536-d50_time.txt
+RESULT kernel=matmul size=1536 density=0.5 nnz=1179974 iters=1 total_s=12.176836 per_call_us=12176835.953 csr_build_us=0.000 checksum=-0.508314
+real 12.39
+[22:29:49] results/naive-n1536-d50_l1_t1.txt
+RESULT kernel=matmul size=1536 density=0.5 nnz=1179974 iters=1 total_s=12.176029 per_call_us=12176029.391 csr_build_us=0.000 checksum=-0.508314
+[22:30:02] results/naive-n1536-d50_l2_t1.txt
+RESULT kernel=matmul size=1536 density=0.5 nnz=1179974 iters=1 total_s=12.174921 per_call_us=12174921.423 csr_build_us=0.000 checksum=-0.508314
+[22:30:16] results/naive-n1536-d50-setup_l1_t1.txt
+RESULT kernel=matmul size=1536 density=0.5 nnz=1179974 iters=0 total_s=0.000000 per_call_us=0.000 csr_build_us=0.000 checksum=0.000000
+[22:30:17] results/sparse-n1536-d50_time.txt
+RESULT kernel=matmul_sparse size=1536 density=0.5 nnz=1179974 iters=2 total_s=7.921862 per_call_us=3960931.140 csr_build_us=51074.756 checksum=-1.016628
+real 8.18
+[22:30:28] results/sparse-n1536-d50_l1_t1.txt
+RESULT kernel=matmul_sparse size=1536 density=0.5 nnz=1179974 iters=2 total_s=7.178749 per_call_us=3589374.418 csr_build_us=51392.877 checksum=-1.016628
+[22:30:36] results/sparse-n1536-d50_l2_t1.txt
+RESULT kernel=matmul_sparse size=1536 density=0.5 nnz=1179974 iters=2 total_s=7.159422 per_call_us=3579710.961 csr_build_us=51288.107 checksum=-1.016628
+[22:30:45] results/sparse-n1536-d50-setup_l1_t1.txt
+RESULT kernel=matmul_sparse size=1536 density=0.5 nnz=1179974 iters=0 total_s=0.000000 per_call_us=0.000 csr_build_us=51373.269 checksum=0.000000
+[22:30:47] results/naive-n1536-d100_time.txt
+RESULT kernel=matmul size=1536 density=1 nnz=2359296 iters=1 total_s=12.163915 per_call_us=12163914.653 csr_build_us=0.000 checksum=3.543530
+real 12.37
+[22:31:02] results/naive-n1536-d100_l1_t1.txt
+RESULT kernel=matmul size=1536 density=1 nnz=2359296 iters=1 total_s=12.168375 per_call_us=12168375.119 csr_build_us=0.000 checksum=3.543530
+[22:31:15] results/naive-n1536-d100_l2_t1.txt
+RESULT kernel=matmul size=1536 density=1 nnz=2359296 iters=1 total_s=12.170148 per_call_us=12170147.657 csr_build_us=0.000 checksum=3.543530
+[22:31:30] results/naive-n1536-d100-setup_l1_t1.txt
+RESULT kernel=matmul size=1536 density=1 nnz=2359296 iters=0 total_s=0.000000 per_call_us=0.000 csr_build_us=0.000 checksum=0.000000
+[22:31:41] results/sparse-n1536-d100_time.txt
+RESULT kernel=matmul_sparse size=1536 density=1 nnz=2359296 iters=1 total_s=8.111262 per_call_us=8111261.856 csr_build_us=19225.770 checksum=3.543530
+real 8.33
+[22:31:50] results/sparse-n1536-d100_l1_t1.txt
+RESULT kernel=matmul_sparse size=1536 density=1 nnz=2359296 iters=1 total_s=7.988603 per_call_us=7988602.605 csr_build_us=20279.249 checksum=3.543530
+[22:31:59] results/sparse-n1536-d100_l2_t1.txt
+RESULT kernel=matmul_sparse size=1536 density=1 nnz=2359296 iters=1 total_s=7.612433 per_call_us=7612433.116 csr_build_us=19442.600 checksum=3.543530
+[22:32:08] results/sparse-n1536-d100-setup_l1_t1.txt
+RESULT kernel=matmul_sparse size=1536 density=1 nnz=2359296 iters=0 total_s=0.000000 per_call_us=0.000 csr_build_us=19781.333 checksum=0.000000
+[22:32:09] done; now run: python3 perf/summarize.py && python3 perf/plot.py
